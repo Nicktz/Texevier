@@ -3,9 +3,9 @@ Introduction
 
 This package helps a user set up an Elsevier template for writing academic journal reports in Rmarkdown. The setup requires very few lines of code and will get you up and running in *less than a minute* (provided you have all the relevent dependencies installed - see below), with a fully working and good-to-go template.
 
-Using Texevier you can simply start writing your paper / thesis / phd in R.
+Using Texevier you can simply start writing your paper / thesis / phd in R after running five lines of code. Your template will look as follows:
 
-[Read more words!](ScreenShot/ScreenShot.JPG)
+![Screenshot](inst/ScreenShot/ScreenShot.JPG)
 
 Dependencies Required
 ---------------------
@@ -21,12 +21,10 @@ Code
 
 After installing all three at the top, simply run the following code:
 
-``` r
-if (!require("devtools")) install.packages("devtools")
-require(devtools)
-devtools::install_github("Nicktz/Texevier")
-create_template(directory = "C:/Temp", template_name = "Template", launch_template = TRUE)
-```
+    if (!require("devtools")) install.packages("devtools")
+    require(devtools)
+    devtools::install_github("Nicktz/Texevier")
+    create_template(directory = "C:/Temp", template_name = "Template")
 
 This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute.
 
