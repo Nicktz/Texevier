@@ -15,8 +15,8 @@
 create_template <- function(directory, template_name, bib.location, launch_template = TRUE) {
 
   library(devtools)
-  tex.file.root <- system.file("inst/Tex", package = "Texevier")
-  rmd.file.root <- system.file("inst/Template", package = "Texevier")
+  tex.file.root <- system.file("Tex", package = "Texevier")
+  rmd.file.root <- system.file("Template", package = "Texevier")
 
   if (missing(directory)) {
     directory <- "C:/Template"
