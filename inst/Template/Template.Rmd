@@ -1,0 +1,206 @@
+---
+# IMPORTANT: Change settings here, but DO NOT change the spacing. 
+# Remove comments and add values where applicable. 
+# The descriptions below should be self-explanatory
+
+title: "The Benefit of Opaqueness in Complicated Research Titles"
+#subtitle: "This will appear as header"
+
+documentclass: "elsarticle"
+
+# Comment: ----- Follow this pattern for up to 5 authors
+Author1: "Nico Katzke"  # First Author
+Ref1: "Fairtree Capital, Willowbridge, Bellville, South Africa" # First Author's Affiliation
+Email1: "nfkatzke\\@gmail.com" # First Author's Email address
+
+Author2: "John Smith"
+Ref2: "Department of Economics, Stellenbosch University, South Africa."
+Email2: "John Smith\\@gmail.com"
+CommonAffiliation_12: TRUE # If Author 1 and 2 have a common affiliation. Works with _13, _23, etc.
+
+Author3: "John Doe"
+Email3: "JohnSmith\\@gmail.com"
+
+CorrespAuthor_1: TRUE  # If corresponding author is author 3, e.g., use CorrespAuthor_3: TRUE
+
+keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Rolling window OLS" # Use \\sep to separate
+JELCodes: "L250 \\sep L100"
+
+# Comment: ----- Manage headers and footers:
+#BottomLFooter: $Title$
+#BottomCFooter:
+BottomRFooter: "\\footnotesize Page \\thepage\\" # Add a '#' before this line to remove footer.
+addtoprule: TRUE
+addfootrule: TRUE               # Use if footers added. Add '#' to remove line.
+bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
+RemovePreprintSubmittedTo: FALSE  # Removes the 'preprint submitted to...' at bottom of titlepage
+Journal: "Journal of Finance"   # Journal that the paper will be submitting to.
+toc: no                         # Add a table of contents
+numbersections: yes             # Should sections (and thus figures and tables) be numbered?
+fontsize: 12pt                  # Set fontsize
+linestretch: 1.5                # Set distance between lines.
+output:
+  pdf_document:
+    keep_tex: TRUE
+    template: Tex/TexDefault.txt
+    fig_width: 3.5 # Adjust default figure sizes. This can also be done in the chunks of the text.
+    fig_height: 3.5
+abstract: |
+  Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
+---
+
+# Introduction \label{Introduction}
+
+References are to be made as follows: @fama1997[p. 33] and @caspi2015 Such authors could also be referenced in brackets [@caspi2015] and together [@fama1997 \& @caspi2015]. Source the reference code from scholar.google.com by clicking on ``cite'' below article name. Then select BibTeX at the bottom of the Cite window, and proceed to copy and paste this code into your ref.bib file located in the directory's Tex folder. I suggest renaming the top line after \@article, as done in the template ref.bib file, to something more intuitive for you to remember. Do not change the rest of the code.
+
+
+To reference a section, you have to set a label using ``\\label'' in R, and then reference it in-text as e.g.: section \ref{Data}.
+
+
+Writing in Rmarkdown is surprizingly easy - see [this website](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) cheatsheet for a summary on writing Rmd writing tips.
+
+# Data \label{Data}
+
+Discussion of data should be thorough with a table of statistics and ideally a figure. E.g. as below:
+
+```{r Figure1, echo = FALSE, message = FALSE, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{Figure1}", fig.ext = 'png', fig.height = 3, fig.width = 6}
+
+library("dplyr")
+library("ggplot2")
+library("ggthemes")
+
+g <-
+  ggplot(data = mtcars %>% tbl_df()) + # All data must be tbl_df()::: class(mtcars %>% tbl_df())
+  geom_point(aes(x = disp, y = hp, color = cyl)) +
+  theme_bw() +
+  # theme(legend.position = "none") +
+  theme(plot.title = element_text(size = 10)) +
+  theme(axis.title = element_text(size = 10), 
+        axis.title.x = element_text()) +
+  ylab("y-axis") +
+  xlab("x-axis")
+
+print(g)  
+
+```
+
+To reference this plot, add a ``\\label'' after the caption in the chunk heading, as done above. Then reference the plot as such: As can be seen, figure \ref{Figure1} is excellent. The nice thing now is that it correctly numbers all your figures (and sections or tables) and will update if it moves. The links are also dynamic.
+
+I very strongly suggest using ggplot2 (ideally in combination with dplyr) using the ggtheme package to change the themes of your figures.
+
+Also note the information that I have placed above the chunks in the code chunks for the figures. You can edit any of these easily - visit the Rmarkdown webpage for more information.
+
+Here follows another nice figure:
+
+```{r figure2, echo = FALSE, message = FALSE, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{lit}", fig.ext = 'png', fig.height = 3, fig.width = 6}
+
+library("dplyr")
+library("ggplot2")
+library("ggthemes")
+
+g <-
+  ggplot(data = mpg, aes(class)) + # All data must be tbl_df()::: class(mtcars %>% tbl_df())
+  geom_bar(aes(fill = drv), position = 'dodge') +
+  theme_hc() +
+  # theme(legend.position = "none") +
+  theme(plot.title = element_text(size = 10)) +
+  theme(axis.title = element_text(size = 10), 
+        axis.title.x = element_text()) +
+  ylab("y-axis") +
+  xlab("x-axis")
+
+print(g)  
+
+```
+
+
+#  Methodology
+
+## Subsection
+Ideally do not overuse subsections. It equates to bad writing.^[This is an example of a footnote by the way. Something that should also not be overused.]
+
+## Math section
+
+Equations should be written as such:
+
+\begin{align} 
+\beta = \sum_{i = 1}^{\infty}\frac{\alpha^2}{\sigma_{t-1}^2} \label{eq1} \\ 
+\int_{x = 1}^{\infty}x_{i} = 1 \notag
+\end{align}
+
+
+Note again the reference to equation \ref{eq1}. Writing nice math requires practice. Note I used a forward slashes to make a space in the equations. I can also align equations using ``\&'', and set to numbering only the first line. Here follows a more complicated equation:
+
+
+\begin{align} 
+	y_t &= c + B(L) y_{t-1} + e_t   \label{eq2}    \\ \notag 
+	e_t &= H_t^{1/2}  z_t ; \quad z_t \sim  N(0,I_N) \quad \& \quad H_t = D_tR_tD_t \\ \notag
+		D_t^2 &= {\sigma_{1,t}, \dots, \sigma_{N,t}}   \\ \notag
+		\sigma_{i,t}^2 &= \gamma_i+\kappa_{i,t}  v_{i, t-1}^2 +\eta_i  \sigma_{i, t-1}^2, \quad \forall i \\ \notag
+		R_{t, i, j} &= {diag(Q_{t, i, j}}^{-1}) . Q_{t, i, j} . diag(Q_{t, i, j}^{-1})  \\ \notag
+		Q_{t, i, j} &= (1-\alpha-\beta)  \bar{Q} + \alpha  z_t  z_t'  + \beta  Q_{t, i, j} \notag
+\end{align}
+
+Noten that in \ref{eq2} I have aligned the equations by the equal signs. I also want only one tag, and I create spaces using ``quads''. 
+
+See if you can figure out how to do complex math using the two examples provided in \ref{eq1} and \ref{eq2}
+
+<!-- $$ -->
+<!-- \\begin{align} -->
+<!-- \\beta = \\alpha^2 -->
+<!-- \end{align} -->
+<!-- $$ -->
+
+
+# Results
+
+
+Tables can be included as follows. Use the _xtable_ package for tables. Table placement = H implies Latex tries to place the table Here, and not on a new page.
+
+
+```{r ShortTable, echo = FALSE, message = FALSE, results = 'asis'}
+
+library(xtable)
+data = mtcars[1:5,] %>% tbl_df()
+
+table <- xtable(data, caption = "Short Table Example \\label{tab1}")
+  print.xtable(table, 
+             # tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H', 
+             # scalebox = 0.3, 
+             comment = FALSE,
+             caption.placement = 'bottom'
+             )
+
+```
+
+To reference calculations __in text__, _do this:_ From table \ref{tab1} we see the average value of mpg is `r mean(mtcars[1:5,]$mpg)` (how awesome is that?).
+
+Including tables that span across pages, use e.g.:
+
+```{r LongTable, echo = FALSE, message = FALSE, results = 'asis'}
+
+library(xtable)
+data = mtcars %>% tbl_df()
+table <- xtable(data, caption = "Long Table Example")
+  print.xtable(table, 
+             tabular.environment = "longtable",
+             floating = FALSE,
+             table.placement = 'H', 
+             comment = FALSE, caption.placement = 'bottom'
+             )
+# See https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf for table inspiration
+```
+
+\hfill
+<!-- hfill can be used to create a space, like here between text and table. -->
+
+
+# Conclusion
+
+I hope you find this template useful. Remember, stackoverflow is your friend - use it to find answers to questions. Feel free to write me a mail if you have any questions regarding the use of this package feel free to email me. To cite this package, simply type citation("Texevier") in Rstudio.
+
+<!-- Make title of bibliography here: -->
+<!-- \newpage -->
+# References  

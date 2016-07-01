@@ -1,0 +1,24 @@
+Package: Texevier
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Nico Katzke
+Maintainer: Nico Katzke <nfkatzke@gmail.com>
+Depends:
+    R (>= 2.15.0)
+Imports:
+    dplyr,
+    ggplot2,
+    rmarkdown,
+    knitr,
+    xtable,
+    ggthemes
+Suggests:
+	xts
+Description: This package provides users with a quick means of setting up
+    the standard accepted academic paper layout in the Elsevier format. Users will have to have
+    Latex installed, as well as the latest rmarkdown version and Rstudio.
+License: GPL-3
+LazyData: TRUE
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
