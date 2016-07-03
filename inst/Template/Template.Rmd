@@ -23,7 +23,7 @@ Email3: "JohnSmith\\@gmail.com"
 
 CorrespAuthor_1: TRUE  # If corresponding author is author 3, e.g., use CorrespAuthor_3: TRUE
 
-keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Rolling window OLS" # Use \\sep to separate
+keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Copula" # Use \\sep to separate
 JELCodes: "L250 \\sep L100"
 
 # Comment: ----- Manage headers and footers:
@@ -61,15 +61,23 @@ Writing in Rmarkdown is surprizingly easy - see [this website](https://www.rstud
 
 # Data \label{Data}
 
-Discussion of data should be thorough with a table of statistics and ideally a figure. E.g. as below:
+Discussion of data should be thorough with a table of statistics and ideally a figure. 
+
+In your tempalte folder, you will find a Data and a Code folder. In order to keep your data files neat, store all of them in your Data folder. Also, I strongly suggest keeping this Rmd file for writing and executing commands, not writing out long pieces of data-wrangling. In the example below, I simply create a ggplot template for scatter plot consistency. I suggest keeping all your data 
 
 ```{r Figure1, echo = FALSE, message = FALSE, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{Figure1}", fig.ext = 'png', fig.height = 3, fig.width = 6}
 
 library("dplyr")
+library("readr")
 library("ggplot2")
 library("ggthemes")
 
-g <-
+
+if (!file.exists(file.path(getwd(), "Code/Example_Plot_Scatter.R"))) {
+  # This is just a random plot to show you a plot. This is done if the getwd() does not point to your Template's directory.
+  # Set WD below to your project's working directory.
+  
+  g <-
   ggplot(data = mtcars %>% tbl_df()) + # All data must be tbl_df()::: class(mtcars %>% tbl_df())
   geom_point(aes(x = disp, y = hp, color = cyl)) +
   theme_bw() +
@@ -82,32 +90,59 @@ g <-
 
 print(g)  
 
+} else {
+
+# ----------  Using your Code and Data folders to manage your Template:
+#------------------- To make this work, change WD to your project's directory:
+
+  WD <- getwd()
+
+# Load Example Data using read_csv from Hadley Wickham (or other csv reading methods of your choice):
+ExampleData <- read_csv( file.path(WD, "Data/ExampleData.csv") )
+
+source( file.path(WD, "Code/Example_Plot_Scatter.R") ) # Load a function from your 'Code' folder. This e.g. plots scatters to your own preferences.
+source( file.path(WD, "Code/Data_Create.R") ) # 
+
+ExampleData <- Data_Create(N = 100) # Same as the ExampleData loaded above - this is just a function to create the stored data.
+
+g <- Example_Plot_Scatter(DataInput = ExampleData, 
+                          X = "Height_Score",
+                          Y = "Weight_Score",
+                          Z = "Agility_Score",
+                          Theme = theme_bw(), # run ?ggthemes for other themes. 
+                          Title = "", # I prefer to use the caption set above. 
+                          Ylab = "Height", 
+                          Xlab = "Lenght",
+                          LegendTitle = "Agility",
+                          TitleSize = 10, 
+                          LabSize = 10)
+
+print(g)
+
+  
+}
+
+
+# Although the functions above are really simple, the principle is simple: containing calculations and data wrangling in their own functions will make this template much cleaner and manageable. 
+
+# When you start working, please delete these meaningless functions...
+
 ```
 
-To reference this plot, add a ``\\label'' after the caption in the chunk heading, as done above. Then reference the plot as such: As can be seen, figure \ref{Figure1} is excellent. The nice thing now is that it correctly numbers all your figures (and sections or tables) and will update if it moves. The links are also dynamic.
+To reference the plot above, add a ``\\label'' after the caption in the chunk heading, as done above. Then reference the plot as such: As can be seen, figure \ref{Figure1} is excellent. The nice thing now is that it correctly numbers all your figures (and sections or tables) and will update if it moves. The links are also dynamic.
 
 I very strongly suggest using ggplot2 (ideally in combination with dplyr) using the ggtheme package to change the themes of your figures.
 
 Also note the information that I have placed above the chunks in the code chunks for the figures. You can edit any of these easily - visit the Rmarkdown webpage for more information.
 
-Here follows another nice figure:
+Here follows another figure from built-in ggplot2 data:
 
-```{r figure2, echo = FALSE, message = FALSE, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{lit}", fig.ext = 'png', fig.height = 3, fig.width = 6}
-
-library("dplyr")
-library("ggplot2")
-library("ggthemes")
+```{r figure2, echo = FALSE, message = FALSE, warning =  FALSE, fig.align = 'center', fig.cap = "Diamond Cut Plot \\label{lit}", fig.ext = 'png', fig.height = 3, fig.width = 6}
 
 g <-
-  ggplot(data = mpg, aes(class)) + # All data must be tbl_df()::: class(mtcars %>% tbl_df())
-  geom_bar(aes(fill = drv), position = 'dodge') +
-  theme_hc() +
-  # theme(legend.position = "none") +
-  theme(plot.title = element_text(size = 10)) +
-  theme(axis.title = element_text(size = 10), 
-        axis.title.x = element_text()) +
-  ylab("y-axis") +
-  xlab("x-axis")
+ggplot(diamonds, aes(depth, fill = cut, colour = cut)) +
+  geom_density(alpha = 0.3) +
+  theme_bw()
 
 print(g)  
 
@@ -175,7 +210,7 @@ table <- xtable(data, caption = "Short Table Example \\label{tab1}")
 
 ```
 
-To reference calculations __in text__, _do this:_ From table \ref{tab1} we see the average value of mpg is `r mean(mtcars[1:5,]$mpg)` (how awesome is that?).
+To reference calculations __in text__, _do this:_ From table \ref{tab1} we see the average value of mpg is `r mean(mtcars[1:5,]$mpg)`.
 
 Including tables that span across pages, use e.g.:
 

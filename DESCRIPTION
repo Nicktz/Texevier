@@ -12,7 +12,8 @@ Imports:
     rmarkdown,
     knitr,
     xtable,
-    ggthemes
+    ggthemes,
+	readr
 Suggests:
 	xts
 Description: This package provides users with a quick means of setting up

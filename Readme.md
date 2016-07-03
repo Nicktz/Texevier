@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This package helps a user set up an Elsevier template for writing academic journal reports in Rmarkdown. The setup requires very few lines of code and will get you up and running in *less than a minute* (provided you have all the relevent dependencies installed - see below), with a fully working and good-to-go template.
+This package helps a user set up an Elsevier template for writing academic journal reports in Rmarkdown. The setup requires very few lines of code and will get you up and running in *a few seconds* (provided you have all the relevent dependencies installed - see below), with a fully working and good-to-go template.
 
 Using Texevier you can simply start writing your paper / thesis / phd in R after running five lines of code. Your template will look as follows:
 
@@ -27,9 +27,9 @@ After installing all three at the top, simply run the following code:
     require("Texevier")
     create_template(directory = "C:/Temp", template_name = "Template")
 
-This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute.
+This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute. A pdf will pop up, which you can scroll through to see what your template looks like. REMEMBER to close the pdf before building a new one.
 
-A template.Rmd file will be opened automatically from the directory provided, which contains all the needed notes on how to write an academic paper in R. I recommend going through that for a good reference before you start working.
+A template.Rmd file will also be opened automatically from the directory provided, which contains all the needed notes on how to write an academic paper in R to produce the pdf example shown. I recommend going through the code in depth for a good reference before you start working.
 
 Motivation
 ----------

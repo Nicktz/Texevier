@@ -17,6 +17,8 @@ create_template <- function(directory, template_name, bib.location, launch_templ
   library(devtools)
   tex.file.root <- system.file("Tex", package = "Texevier")
   rmd.file.root <- system.file("Template", package = "Texevier")
+  data.file.root <- system.file("Data", package = "Texevier")
+  code.file.root <- system.file("Code", package = "Texevier")
 
   if (missing(directory)) {
     directory <- "C:/Template"
@@ -50,6 +52,8 @@ create_template <- function(directory, template_name, bib.location, launch_templ
 
 # Create and save tex templates:
   dir.create( file.path(directory, "Tex"), showWarnings = FALSE )
+  dir.create( file.path(directory, "Code"), showWarnings = FALSE )
+  dir.create( file.path(directory, "Data"), showWarnings = FALSE )
 
   if( missing(bib.location) ) {
 # Fetch and store templates:
@@ -64,6 +68,8 @@ invisible ( file.copy ( list.files(file.path(rmd.file.root), full.names = TRUE),
     invisible ( file.rename(from = list.files(file.path(directory, "Tex") , full.names = TRUE)[grepl(bib_name,list.files(file.path(tex.file.root), full.names = TRUE))],
                 to = paste0(file.path(directory, "Tex"), "/refs.bib")) )
   }
+  invisible ( file.copy ( list.files(file.path(data.file.root), full.names = TRUE), to = file.path(directory, "Data") ) )
+  invisible ( file.copy ( list.files(file.path(code.file.root), full.names = TRUE), to = file.path(directory, "Code") ) )
 
   if ( !missing(template_name)) {
     template_name <- gsub(".Rmd", "",template_name)
@@ -81,13 +87,17 @@ if (launch_template) {
                     output_format = "pdf_document",
                     envir = new.env())
   file.edit(paste0( file.path(directory, template_name), ".Rmd"))
-
-cat("------------------ \n
-Your Template has successfully built the template PDF.
-    \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the pdf just built.
+  file.edit(paste0( file.path(directory, template_name), ".Rmd"))
+  shell.exec(paste0( file.path(directory, template_name), ".PDF")) # This can be any Rproj other than the current
+cat("\n
+------------------ README: \n
+Your Template has successfully built the template PDF. \n
+Close the illustrated PDF after building it. A PDF Cannot be built on an open PDF. \n
+------------------
+    \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.
     \n I suggest creating a .Rproj in your new directory before working further.
     \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.
-    \n Important: Change the YAML above to change settings.")
+    \n To customize the layout, change the code above between the first and second ``` in the template.")
 }
 
 
