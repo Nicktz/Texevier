@@ -267,6 +267,7 @@ $endif$
 \rhead{$subtitle$}
 \lfoot{$BottomLFooter$}
 \rfoot{$BottomRFooter$} 
+\lhead{$TopLHeader$}
 %\rfoot{\footnotesize Page \thepage\ } % "e.g. Page 2"
 \cfoot{$BottomCFooter$}
 

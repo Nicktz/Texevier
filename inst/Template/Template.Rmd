@@ -4,7 +4,7 @@
 # The descriptions below should be self-explanatory
 
 title: "The Benefit of Opaqueness in Complicated Research Titles"
-#subtitle: "This will appear as header"
+#subtitle: "This will appear as Right Header"
 
 documentclass: "elsarticle"
 
@@ -29,6 +29,7 @@ JELCodes: "L250 \\sep L100"
 # Comment: ----- Manage headers and footers:
 #BottomLFooter: $Title$
 #BottomCFooter:
+#TopLHeader: \leftmark # Adds section name at topleft. Remove comment to add it.
 BottomRFooter: "\\footnotesize Page \\thepage\\" # Add a '#' before this line to remove footer.
 addtoprule: TRUE
 addfootrule: TRUE               # Use if footers added. Add '#' to remove line.
