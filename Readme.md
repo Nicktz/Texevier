@@ -25,7 +25,7 @@ After installing all three at the top, simply run the following code:
     require(devtools)
     devtools::install_github("Nicktz/Texevier")
     require("Texevier")
-    create_template(directory = "C:/Temp", template_name = "Template")
+    create_template(directory = "C:/Texevier", template_name = "Template")
 
 This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute. A pdf will pop up, which you can scroll through to see what your template looks like. REMEMBER to close the pdf before building a new one.
 
