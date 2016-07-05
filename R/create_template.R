@@ -16,7 +16,7 @@ create_template <- function (directory, template_name, bib.location, launch_temp
 
   sink(tempfile())
   
-  ifelse(require(devtools, quietly = T) == F, stop("Devtools library not found"), FALSE)
+  ifelse(!require(devtools, quietly = T), stop("Devtools library not found"), FALSE)
   
   tex.file.root <- system.file("Tex", package = "Texevier")
   rmd.file.root <- system.file("Template", package = "Texevier")
@@ -56,18 +56,17 @@ create_template <- function (directory, template_name, bib.location, launch_temp
       ifelse(!dir.exists(directory), mkdirs(directory), FALSE)
   }
   
-  if (!missing(bib.location) && !file.exists(bib.location)){
-    sink()
-    stop(cat(paste0("\n bib file: \n", bib.location," \n does not exist. Leave this parameter blank to create default .bibfile, or check bib.location provided.")))
-  }
-  
-  
+
 # Create and save tex templates:
   dir.create(file.path(directory, "Tex"), showWarnings = FALSE)
   dir.create(file.path(directory, "Code"), showWarnings = FALSE)
   dir.create(file.path(directory, "Data"), showWarnings = FALSE)
 
 # Handle all BibTex requirements
+  if (!missing(bib.location) && !file.exists(bib.location)){
+    sink()
+    stop(cat(paste0("\n bib file: \n", bib.location," \n does not exist. Leave this parameter blank to create default .bibfile, or check bib.location provided.")))
+  }
   
   if (missing(bib.location)) {
 # Fetch and store templates:
