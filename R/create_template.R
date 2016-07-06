@@ -44,12 +44,11 @@ create_template <- function (directory, template_name, bib.location, launch_temp
 
     if (answer %in% c("Y","y")) {
       cat("Creating folder and executing Tex Platform creation")
-
       sink(tempfile())
       Sys.sleep(1)
           # unlink(list.files(directory, full.names = TRUE), recursive = TRUE)
           dir.create(paste0(directory,"\\template"), showWarnings = FALSE)
-          directory <<- paste0(directory,"\\template")
+          directory <- paste0(directory,"\\template")
       } else {
         return(cat("!Template not created!"))
       }
@@ -101,11 +100,11 @@ create_template <- function (directory, template_name, bib.location, launch_temp
                             to = paste0( file.path(directory, template_name), ".Rmd"))
   }
 
+# Creating template
   if (launch_template) {
     library(rmarkdown)
-    WD <- getwd()
-    on.exit(setwd(WD))
     setwd(directory)
+    on.exit(setwd(directory))
     rmarkdown::render(paste0(file.path(directory, template_name), ".Rmd"),
                       output_format = "pdf_document",
                       envir = new.env())
