@@ -103,6 +103,8 @@ create_template <- function (directory, template_name, bib.location, launch_temp
 # Creating template
   if (launch_template) {
     library(rmarkdown)
+    WD <- getwd()		
+    on.exit(setwd(WD))
     setwd(directory)
     on.exit(setwd(directory))
     rmarkdown::render(paste0(file.path(directory, template_name), ".Rmd"),
