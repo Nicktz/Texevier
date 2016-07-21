@@ -15,9 +15,9 @@
 create_template <- function (directory, template_name, bib.location, launch_template = TRUE) {
 
   sink(tempfile())
-  
-  ifelse(!require(devtools, quietly = T), stop("Devtools library not found"), FALSE)
-  
+
+  ifelse(!require(devtools, quietly = T), return(cat("Devtools library not found")), FALSE)
+
   tex.file.root <- system.file("Tex", package = "Texevier")
   rmd.file.root <- system.file("Template", package = "Texevier")
   data.file.root <- system.file("Data", package = "Texevier")
@@ -29,21 +29,28 @@ create_template <- function (directory, template_name, bib.location, launch_temp
   if (missing(template_name)) {
     template_name <- "Template"
   }
-  
+
   sink()
-  
+
   if (file.exists(directory)) {
-    answer <- readline(cat("--------------- \n PROMPT: \n \n Path: ", file.path(directory), " provided already exists. \n Proceed to create template in this folder? Type: Y or N....\n"))
+    answer <- readline(cat("--------------- \n PROMPT: \n \n Path: ",
+                           file.path(directory), " provided already exists. \n Proceed to create template in this folder? Type: Y or N....\n"))
+
+    while(!(answer %in% c("Y", "y", "N", "n")))
+    {
+      answer <- readline(cat("--------------- \n PROMPT: \n---------------\n Invalid input, please type Y in order to create template folder in path: ",
+                             file.path(directory)," OR type N to quit \n"))
+    }
+
     if (answer %in% c("Y","y")) {
       cat("Creating folder and executing Tex Platform creation")
-      
       sink(tempfile())
       Sys.sleep(1)
           # unlink(list.files(directory, full.names = TRUE), recursive = TRUE)
           dir.create(paste0(directory,"\\template"), showWarnings = FALSE)
-          directory <<- paste0(directory,"\\template")
+          directory <- paste0(directory,"\\template")
       } else {
-        stop("No Template Created")
+        return(cat("!Template not created!"))
       }
   } else {
     sink(tempfile())
@@ -55,7 +62,7 @@ create_template <- function (directory, template_name, bib.location, launch_temp
     }
       ifelse(!dir.exists(directory), mkdirs(directory), FALSE)
   }
-  
+
 
 # Create and save tex templates:
   dir.create(file.path(directory, "Tex"), showWarnings = FALSE)
@@ -67,7 +74,7 @@ create_template <- function (directory, template_name, bib.location, launch_temp
     sink()
     stop(cat(paste0("\n bib file: \n", bib.location," \n does not exist. Leave this parameter blank to create default .bibfile, or check bib.location provided.")))
   }
-  
+
   if (missing(bib.location)) {
 # Fetch and store templates:
     file.copy (list.files(tex.file.root, full.names = TRUE), to = file.path(directory, "Tex"))
@@ -82,7 +89,7 @@ create_template <- function (directory, template_name, bib.location, launch_temp
     file.rename(from = list.files(file.path(directory, "Tex") , full.names = TRUE)[grepl(bib_name,list.files(tex.file.root, full.names = TRUE))],
                 to = paste0(file.path(directory, "Tex"), "/refs.bib"))
   }
-# Fetch template code and Data  
+# Fetch template code and Data
   file.copy (list.files(data.file.root, full.names = TRUE), to = file.path(directory, "Data"))
   file.copy (list.files(code.file.root, full.names = TRUE), to = file.path(directory, "Code"))
 
@@ -93,11 +100,13 @@ create_template <- function (directory, template_name, bib.location, launch_temp
                             to = paste0( file.path(directory, template_name), ".Rmd"))
   }
 
+# Creating template
   if (launch_template) {
     library(rmarkdown)
-    WD <- getwd()
+    WD <- getwd()		
     on.exit(setwd(WD))
     setwd(directory)
+    on.exit(setwd(directory))
     rmarkdown::render(paste0(file.path(directory, template_name), ".Rmd"),
                       output_format = "pdf_document",
                       envir = new.env())
