@@ -12,7 +12,7 @@
 
 <meta name="author" content="Nico Katzke" />
 
-<meta name="date" content="2016-07-01" />
+<meta name="date" content="2016-07-24" />
 
 <title>Texevier</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Texevier</h1>
 <h4 class="author"><em>Nico Katzke</em></h4>
-<h4 class="date"><em>2016-07-01</em></h4>
+<h4 class="date"><em>2016-07-24</em></h4>
 
 
 
@@ -90,24 +90,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="code" class="section level2">
 <h2>Code</h2>
 <p>After installing all three at the top, simply run the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">require</span>(devtools)
-devtools::<span class="kw">install_github</span>(<span class="st">&quot;Nicktz/Texevier&quot;</span>)
-<span class="kw">create_template</span>(<span class="dt">directory =</span> <span class="st">&quot;C:/Temp&quot;</span>, <span class="dt">template_name =</span> <span class="st">&quot;Template&quot;</span>, <span class="dt">launch_template =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    if (!<span class="kw">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+    <span class="kw">library</span>(devtools)
+    devtools::<span class="kw">install_github</span>(<span class="st">&quot;Nicktz/Texevier&quot;</span>)
+    <span class="kw">library</span>(Texevier)
+    dir &lt;-<span class="st"> </span><span class="kw">choose.dir</span>(<span class="dt">default =</span> <span class="st">&quot;C:/Texevier&quot;</span>)
+    <span class="kw">create_template</span>(<span class="dt">directory =</span> dir, <span class="dt">template_name =</span> <span class="st">&quot;Template&quot;</span>)</code></pre></div>
 <p>This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute.</p>
 <p>A template.Rmd file will be opened automatically from the directory provided, which contains all the needed notes on how to write an academic paper in R. I recommend going through that for a good reference before you start working.</p>
 </div>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
-<p>Doing research in R allows you to verify your work easily. This template is designed to save the researcher time in terms of setting up a proper template - something which could feel daunting and can be time-consuming for even intermediate LaTeX and R users.</p>
-<p>Feel free to edit the templates and use this as a starting point for your own research.</p>
+<p>Doing research in R allows you to verify your work easily. This template is designed to save the researcher time in terms of setting up a proper template for doing formal research. This is something which could feel daunting and can be time-consuming for even intermediate LaTeX and R users. This package is intended to get you started in less than a minute.</p>
+<p>Feel free to edit the templates and use this as a starting point for your own research. I suggest keeping the structure in the folder as is, but of course this is completely up to the researcher.</p>
 </div>
-</div>
-<div id="section" class="section level1">
-<h1></h1>
-</div>
-<div id="dependencies" class="section level1">
-<h1>Dependencies </h1>
 </div>
 
 
