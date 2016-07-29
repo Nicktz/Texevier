@@ -25,7 +25,10 @@ After installing all three at the top, simply run the following code:
     library(devtools)
     devtools::install_github("Nicktz/Texevier")
     library(Texevier)
+    # Using non-Mac: 
     dir <- choose.dir(default = "C:/Texevier")
+    # Using Mac
+    # If you are using a Mac: please input your folder's directory directly.
     create_template(directory = dir, template_name = "Template")
 
 This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute. A pdf will pop up, which you can scroll through to see what your template looks like. REMEMBER to close the pdf before building a new one.

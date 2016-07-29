@@ -12,116 +12,101 @@
 #' @examples create_template(directory = "C:/Temp", template_name = "Project", launch_template = TRUE)
 #' @export
 
-create_template <- function (directory, template_name, bib.location, launch_template = TRUE) {
-
+create_template <- function (directory, template_name, bib.location, launch_template = TRUE)
+{
   sink(tempfile())
-
-  ifelse(!require(devtools, quietly = T), return(cat("Devtools library not found")), FALSE)
-
+  ifelse(!require(devtools, quietly = T), return(cat("Devtools library not found")),
+         FALSE)
   tex.file.root <- system.file("Tex", package = "Texevier")
   rmd.file.root <- system.file("Template", package = "Texevier")
   data.file.root <- system.file("Data", package = "Texevier")
   code.file.root <- system.file("Code", package = "Texevier")
-
   if (missing(directory) | is.na(directory) == T) {
     directory <- "C:/Template"
-    }
+  }
   if (missing(template_name)) {
     template_name <- "Template"
   }
-
   sink()
-
   if (file.exists(directory)) {
     answer <- readline(cat("--------------- \n PROMPT: \n \n Path: ",
                            file.path(directory), " provided already exists. \n Proceed to create template in this folder? Type: Y or N....\n"))
-
-    while(!(answer %in% c("Y", "y", "N", "n")))
-    {
+    while (!(answer %in% c("Y", "y", "N", "n"))) {
       answer <- readline(cat("--------------- \n PROMPT: \n---------------\n Invalid input, please type Y in order to create template folder in path: ",
-                             file.path(directory)," OR type N to quit \n"))
+                             file.path(directory), " OR type N to quit \n"))
     }
-
-    if (answer %in% c("Y","y")) {
+    if (answer %in% c("Y", "y")) {
       cat("Creating folder and executing Tex Platform creation")
       sink(tempfile())
       Sys.sleep(1)
-          # unlink(list.files(directory, full.names = TRUE), recursive = TRUE)
-          dir.create(paste0(directory,"\\template"), showWarnings = FALSE)
-          directory <- paste0(directory,"\\template")
-      } else {
-        return(cat("!Template not created!"))
-      }
-  } else {
+      dir.create( file.path(directory, "template"), showWarnings = FALSE)
+      directory <- file.path(directory, "template")
+    }
+    else {
+      return(cat("!Template not created!"))
+    }
+  }
+  else {
     sink(tempfile())
-    mkdirs <- function (fp) {
+    mkdirs <- function(fp) {
       if (!file.exists(fp)) {
         mkdirs(dirname(fp))
         dir.create(fp)
       }
     }
-      ifelse(!dir.exists(directory), mkdirs(directory), FALSE)
+    ifelse(!dir.exists(directory), mkdirs(directory), FALSE)
   }
-
-
-# Create and save tex templates:
   dir.create(file.path(directory, "Tex"), showWarnings = FALSE)
   dir.create(file.path(directory, "Code"), showWarnings = FALSE)
   dir.create(file.path(directory, "Data"), showWarnings = FALSE)
-
-# Handle all BibTex requirements
-  if (!missing(bib.location) && !file.exists(bib.location)){
+  if (!missing(bib.location) && !file.exists(bib.location)) {
     sink()
-    stop(cat(paste0("\n bib file: \n", bib.location," \n does not exist. Leave this parameter blank to create default .bibfile, or check bib.location provided.")))
+    stop(cat(paste0("\n bib file: \n", bib.location, " \n does not exist. Leave this parameter blank to create default .bibfile, or check bib.location provided.")))
   }
-
   if (missing(bib.location)) {
-# Fetch and store templates:
-    file.copy (list.files(tex.file.root, full.names = TRUE), to = file.path(directory, "Tex"))
-    file.copy (list.files(rmd.file.root, full.names = TRUE), to = directory)
-  } else {
-    bib_name <- unlist(strsplit(bib.location, "/"))[length(unlist(strsplit(bib.location, "/")))]
-    file.copy (list.files(file.path(tex.file.root), full.names = TRUE)[!grepl("ref.bib",list.files(tex.file.root, full.names = TRUE))], to = file.path(directory, "Tex") )
-    file.copy (list.files(bib.location, full.names = TRUE), to = file.path(directory, "Tex"))
-    file.copy (list.files(rmd.file.root, full.names = TRUE), to = directory)
-
-    # rename bibfile to conform to template:
-    file.rename(from = list.files(file.path(directory, "Tex") , full.names = TRUE)[grepl(bib_name,list.files(tex.file.root, full.names = TRUE))],
-                to = paste0(file.path(directory, "Tex"), "/refs.bib"))
+    file.copy(list.files(tex.file.root, full.names = TRUE),
+              to = file.path(directory, "Tex"))
+    file.copy(list.files(rmd.file.root, full.names = TRUE),
+              to = directory)
   }
-# Fetch template code and Data
-  file.copy (list.files(data.file.root, full.names = TRUE), to = file.path(directory, "Data"))
-  file.copy (list.files(code.file.root, full.names = TRUE), to = file.path(directory, "Code"))
-
-# Create template name
+  else {
+    bib_name <- unlist(strsplit(bib.location, "/"))[length(unlist(strsplit(bib.location,
+                                                                           "/")))]
+    file.copy(list.files(file.path(tex.file.root), full.names = TRUE)[!grepl("ref.bib",
+                                                                             list.files(tex.file.root, full.names = TRUE))], to = file.path(directory,
+                                                                                                                                            "Tex"))
+    file.copy(list.files(bib.location, full.names = TRUE),
+              to = file.path(directory, "Tex"))
+    file.copy(list.files(rmd.file.root, full.names = TRUE),
+              to = directory)
+    file.rename(from = list.files(file.path(directory, "Tex"),
+                                  full.names = TRUE)[grepl(bib_name, list.files(tex.file.root,
+                                                                                full.names = TRUE))], to = paste0(file.path(directory,
+                                                                                                                            "Tex"), "/refs.bib"))
+  }
+  file.copy(list.files(data.file.root, full.names = TRUE),
+            to = file.path(directory, "Data"))
+  file.copy(list.files(code.file.root, full.names = TRUE),
+            to = file.path(directory, "Code"))
   if (!missing(template_name)) {
-    template_name <- gsub(".Rmd", "",template_name)
-    file.rename(from = list.files(directory, full.names = TRUE)[grepl(".Rmd",list.files(directory, full.names = TRUE))],
-                            to = paste0( file.path(directory, template_name), ".Rmd"))
+    template_name <- gsub(".Rmd", "", template_name)
+    file.rename(from = list.files(directory, full.names = TRUE)[grepl(".Rmd",
+                                                                      list.files(directory, full.names = TRUE))], to = paste0(file.path(directory,
+                                                                                                                                        template_name), ".Rmd"))
   }
-
-# Creating template
   if (launch_template) {
     library(rmarkdown)
-    WD <- getwd()		
+    WD <- getwd()
     on.exit(setwd(WD))
     setwd(directory)
     on.exit(setwd(directory))
-    rmarkdown::render(paste0(file.path(directory, template_name), ".Rmd"),
-                      output_format = "pdf_document",
-                      envir = new.env())
-    file.edit(paste0(file.path(directory, template_name), ".Rmd"))
-    file.edit(paste0(file.path(directory, template_name), ".Rmd"))
-    shell.exec(paste0(file.path(directory, template_name), ".PDF")) # This can be any Rproj other than the current
+    rmarkdown::render(paste0(file.path(directory, template_name),
+                             ".Rmd"), output_format = "pdf_document", envir = new.env())
+    file.edit(paste0(file.path(directory, template_name),
+                     ".Rmd"))
+    shell.exec(paste0(file.path(directory, template_name),
+                      ".PDF"))
     sink()
-  cat("\n
-  ------------------ README: \n
-  Your Template has successfully built the template PDF. \n
-  Close the illustrated PDF after building it. A PDF Cannot be built on an open PDF. \n
-  ------------------
-      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.
-      \n I suggest creating a .Rproj in your new directory before working further.
-      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.
-      \n To customize the layout, change the code above between the first and second ``` in the template.")
-    }
+    cat("\n\n  ------------------ README: \n\n  Your Template has successfully built the template PDF. \n\n  Close the illustrated PDF after building it. A PDF Cannot be built on an open PDF. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n I suggest creating a .Rproj in your new directory before working further.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.\n      \n To customize the layout, change the code above between the first and second ``` in the template.")
+  }
 }

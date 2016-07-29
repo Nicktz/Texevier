@@ -33,7 +33,10 @@ After installing all three at the top, simply run the following code:
     library(devtools)
     devtools::install_github("Nicktz/Texevier")
     library(Texevier)
+    # Using non-Mac: 
     dir <- choose.dir(default = "C:/Texevier")
+    # Using Mac
+    # If you are using a Mac: please input your folder's directory directly.
     create_template(directory = dir, template_name = "Template")
 ```
 
