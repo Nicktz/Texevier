@@ -52,6 +52,20 @@ abstract: |
   Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
 ---
 
+<!-- First: Set your default preferences for chunk options: -->
+
+<!-- If you want a chunk's code to be printed, set echo = TRUE. message = FALSE stops R printing ugly package loading details in your final paper too. I also suggest setting warning = FALSE and checking for warnings in R, else you might find ugly warnings in your paper. -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+# Note: Include false implies the code is executed, but not printed in your pdf.
+```
+
+
+<!-- ############################## -->
+<!-- # Start Writing here: -->
+<!-- ############################## -->
+
 # Introduction \label{Introduction}
 
 References are to be made as follows: @fama1997[p. 33] and @caspi2015 Such authors could also be referenced in brackets [@caspi2015] and together [@fama1997 \& @caspi2015]. Source the reference code from scholar.google.com by clicking on ``cite'' below article name. Then select BibTeX at the bottom of the Cite window, and proceed to copy and paste this code into your ref.bib file located in the directory's Tex folder. I suggest renaming the top line after \@article, as done in the template ref.bib file, to something more intuitive for you to remember. Do not change the rest of the code.
@@ -66,9 +80,11 @@ Writing in Rmarkdown is surprizingly easy - see [this website](https://www.rstud
 
 Discussion of data should be thorough with a table of statistics and ideally a figure. 
 
-In your tempalte folder, you will find a Data and a Code folder. In order to keep your data files neat, store all of them in your Data folder. Also, I strongly suggest keeping this Rmd file for writing and executing commands, not writing out long pieces of data-wrangling. In the example below, I simply create a ggplot template for scatter plot consistency. I suggest keeping all your data 
+In your tempalte folder, you will find a Data and a Code folder. In order to keep your data files neat, store all of them in your Data folder. Also, I strongly suggest keeping this Rmd file for writing and executing commands, not writing out long pieces of data-wrangling. In the example below, I simply create a ggplot template for scatter plot consistency. I suggest keeping all your data in a data folder.
 
-```{r Figure1, echo = FALSE, message = FALSE, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{Figure1}", fig.ext = 'png', fig.height = 3, fig.width = 6}
+<!-- The following is a code chunk. It must have its own unique name (after the r), or no name. After the comma follows commands for R which are self-explanatory. By default, the code and messages will not be printed in your pdf, just the output: -->
+
+```{r Figure1, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{Figure1}", fig.ext = 'png', fig.height = 3, fig.width = 6}
 
 library("dplyr")
 library("readr")
@@ -140,7 +156,7 @@ Also note the information that I have placed above the chunks in the code chunks
 
 Here follows another figure from built-in ggplot2 data:
 
-```{r figure2, echo = FALSE, message = FALSE, warning =  FALSE, fig.align = 'center', fig.cap = "Diamond Cut Plot \\label{lit}", fig.ext = 'png', fig.height = 3, fig.width = 6}
+```{r figure2, warning =  FALSE, fig.align = 'center', fig.cap = "Diamond Cut Plot \\label{lit}", fig.ext = 'png', fig.height = 3, fig.width = 6}
 
 g <-
 ggplot(diamonds, aes(depth, fill = cut, colour = cut)) +
@@ -196,7 +212,7 @@ See if you can figure out how to do complex math using the two examples provided
 Tables can be included as follows. Use the _xtable_ package for tables. Table placement = H implies Latex tries to place the table Here, and not on a new page.
 
 
-```{r ShortTable, echo = FALSE, message = FALSE, results = 'asis'}
+```{r ShortTable, results = 'asis'}
 
 library(xtable)
 data = mtcars[1:5,] %>% tbl_df()
@@ -217,7 +233,7 @@ To reference calculations __in text__, _do this:_ From table \ref{tab1} we see t
 
 Including tables that span across pages, use e.g.:
 
-```{r LongTable, echo = FALSE, message = FALSE, results = 'asis'}
+```{r LongTable, results = 'asis'}
 
 library(xtable)
 data = mtcars %>% tbl_df()
