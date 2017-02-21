@@ -8,8 +8,7 @@ Maintainer: Nico Katzke <nfkatzke@gmail.com>
 Depends:
     R (>= 3.2.1)
 Imports:
-	tidyr,
-    dplyr,
+	tidyverse,
     ggplot2,
     rmarkdown,
     knitr,
