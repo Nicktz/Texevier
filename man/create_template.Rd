@@ -5,7 +5,7 @@
 \title{create_template}
 \usage{
 create_template(directory, template_name, bib.location,
-  launch_template = TRUE)
+  launch_template = TRUE, ShowPDFatLaunch = FALSE)
 }
 \arguments{
 \item{directory}{A character string with the target folder directory This folder will be created if it does not already exist.}

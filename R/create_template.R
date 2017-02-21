@@ -12,7 +12,7 @@
 #' @examples create_template(directory = "C:/Temp", template_name = "Project", launch_template = TRUE)
 #' @export
 
-create_template <- function (directory, template_name, bib.location, launch_template = TRUE)
+create_template <- function (directory, template_name, bib.location, launch_template = TRUE, ShowPDFatLaunch = FALSE)
 {
   sink(tempfile())
   ifelse(!require(devtools, quietly = T), return(cat("Devtools library not found")),
@@ -104,9 +104,12 @@ create_template <- function (directory, template_name, bib.location, launch_temp
                              ".Rmd"), output_format = "pdf_document", envir = new.env())
     file.edit(paste0(file.path(directory, template_name),
                      ".Rmd"))
-    shell.exec(paste0(file.path(directory, template_name),
-                      ".PDF"))
+
+    if(ShowPDFatLaunch){
+      shell.exec(paste0(file.path(directory, template_name),
+                        ".PDF"))
+      }
     sink()
-    cat("\n\n  ------------------ README: \n\n  Your Template has successfully built the template PDF. \n\n  Close the illustrated PDF after building it. A PDF Cannot be built on an open PDF. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n I suggest creating a .Rproj in your new directory before working further.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.\n      \n To customize the layout, change the code above between the first and second ``` in the template.")
+    cat("\n\n  ------------------ README: \n\n  Your Template has successfully built the template PDF. \n\n  Close the illustrated PDF after building it (If ShowPDFatLaunch = TRUE). A PDF Cannot be built on an open PDF. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n I suggest creating a .Rproj in your new directory before working further.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.\n      \n To customize the layout, change the code above between the first and second ``` in the template.")
   }
 }
