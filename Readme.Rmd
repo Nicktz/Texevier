@@ -11,7 +11,7 @@ This package helps a user set up an Elsevier template for writing academic journ
 Using Texevier you can simply start writing your paper / thesis / phd in R, with a template guiding you through the most important aspects you will encounter in your writing. Your template will look as follows:
 
 
-![Screenshot](inst/ScreenShot/ScreenShot.PNG)
+![Screenshot](inst/ScreenShot/Example.PNG)
 
 ## Dependencies Required
 
