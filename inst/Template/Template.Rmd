@@ -35,7 +35,7 @@ addtoprule: TRUE
 addfootrule: TRUE               # Use if footers added. Add '#' to remove line.
 
 # Setting page margins:
-margin: 2 # Sides
+margin: 2.3 # Sides
 bottom: 2 # bottom
 top: 2.5 # Top
 
@@ -241,14 +241,16 @@ table <- xtable(data, caption = "Short Table Example \\label{tab1}")
              table.placement = 'H', 
              # scalebox = 0.3, 
              comment = FALSE,
-             caption.placement = 'bottom'
+             caption.placement = 'bottom',
              )
 
 ```
 
 To reference calculations __in text__, _do this:_ From table \ref{tab1} we see the average value of mpg is `r mean(mtcars[1:5,]$mpg)`.
 
-Including tables that span across pages, use the following (note that I add below the table: ``continue on the next page'':
+Including tables that span across pages, use the following (note that I add below the table: ``continue on the next page''). This is a neat way of splitting your table across a page.
+
+Use the following default settings to build your own possibly long tables. Note that the following will fit on one page if it can, but cleanly spreads over multiple pages:
 
 ```{r LongTable, results = 'asis'}
 
@@ -274,7 +276,7 @@ table <- xtable(data, caption = "Long Table Example")
              add.to.row = addtorow, # For adding the Continued on next page part...
              comment = FALSE, 
              caption.placement = 'bottom',  # Where do you want the caption?
-             size="\\fontsize{10pt}{11pt}\\selectfont"  # Size of text in table..
+             size="\\fontsize{12pt}{13pt}\\selectfont"  # Size of text in table..
              )
 # See https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf for table inspiration
 ```
