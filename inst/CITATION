@@ -4,12 +4,12 @@ citHeader("To cite reports in publications, please use:")
 citEntry(entry = "manual",
     title = "{Texevier}: {P}ackage to create Elsevier templates for Rmarkdown",
     author = "N.F. Katzke",
-    organization = "Fairtree Capital",
-    address = "Bellville, South Africa",
+    organization = "Prescient Securities",
+    address = "Cape Town, South Africa",
     note = "version 0.1.0",
     year = "2016",
     textVersion  = paste("Katzke, N. F. (2016).",
         "Texevier: Package to create Elsevier templates for Rmarkdown",
-        "version 0.1.0. Fairtree Capital, Bellville, South Africa",
+        "version 0.1.0. Prescient Securities, Cape Town, South Africa",
         "http://github.com/Nicktz/Texevier")
 )

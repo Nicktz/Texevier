@@ -10,7 +10,7 @@ documentclass: "elsarticle"
 
 # Comment: ----- Follow this pattern for up to 5 authors
 Author1: "Nico Katzke"  # First Author
-Ref1: "Bureau for Economic Research, Stellenbosch University, South Africa" # First Author's Affiliation
+Ref1: "Prescient Securities, Cape Town, South Africa" # First Author's Affiliation
 Email1: "nfkatzke\\@gmail.com" # First Author's Email address
 
 Author2: "John Smith"
@@ -33,9 +33,10 @@ JELCodes: "L250 \\sep L100"
 BottomRFooter: "\\footnotesize Page \\thepage\\" # Add a '#' before this line to remove footer.
 addtoprule: TRUE
 addfootrule: TRUE               # Use if footers added. Add '#' to remove line.
+HardSet: TRUE # Hard-set the spacing of words in your document. This will stop LaTeX squashong text to fit on pages, e.g. This is done by hard-setting the spacing dimensions. Set to FALSE if you want LaTeX to optimize this for your paper. 
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
-RemovePreprintSubmittedTo: FALSE  # Removes the 'preprint submitted to...' at bottom of titlepage
-Journal: "Journal of Finance"   # Journal that the paper will be submitting to, if above parameter is set to TRUE.
+RemovePreprintSubmittedTo: TRUE  # Removes the 'preprint submitted to...' at bottom of titlepage
+Journal: "Journal of Finance"   # Journal that the paper will be submitting to, if RemovePreprintSubmittedTo is set to TRUE.
 toc: no                         # Add a table of contents
 numbersections: yes             # Should sections (and thus figures and tables) be numbered?
 fontsize: 12pt                  # Set fontsize
@@ -204,7 +205,7 @@ Note again the reference to equation \ref{eq1}. Writing nice math requires pract
 		Q_{t, i, j} &= (1-\alpha-\beta)  \bar{Q} + \alpha  z_t  z_t'  + \beta  Q_{t, i, j} \notag
 \end{align}
 
-Noten that in \ref{eq2} I have aligned the equations by the equal signs. I also want only one tag, and I create spaces using ``quads''. 
+Note that in \ref{eq2} I have aligned the equations by the equal signs. I also want only one tag, and I create spaces using ``quads''. 
 
 See if you can figure out how to do complex math using the two examples provided in \ref{eq1} and \ref{eq2}.
 
@@ -216,7 +217,6 @@ See if you can figure out how to do complex math using the two examples provided
 <!-- \end{align} -->
 <!-- $$ -->
 
-
 # Results
 
 
@@ -226,7 +226,7 @@ Tables can be included as follows. Use the _xtable_ (or kable) package for table
 ```{r ShortTable, results = 'asis'}
 
 library(xtable)
-data = mtcars[1:5,] %>% tbl_df()
+data <- mtcars[1:5,] %>% tbl_df()
 
 table <- xtable(data, caption = "Short Table Example \\label{tab1}")
   print.xtable(table, 
@@ -242,18 +242,33 @@ table <- xtable(data, caption = "Short Table Example \\label{tab1}")
 
 To reference calculations __in text__, _do this:_ From table \ref{tab1} we see the average value of mpg is `r mean(mtcars[1:5,]$mpg)`.
 
-Including tables that span across pages, use e.g.:
+Including tables that span across pages, use the following (note that I add below the table: ``continue on the next page'':
 
 ```{r LongTable, results = 'asis'}
 
 library(xtable)
+
 data = mtcars %>% tbl_df()
+  addtorow          <- list()
+  addtorow$pos      <- list()
+  addtorow$pos[[1]] <- c(0)
+  addtorow$command  <- c(paste("\\hline \n",
+                               "\\endhead \n",
+                               "\\hline \n",
+                               "{\\footnotesize Continued on next page} \n",
+                               "\\endfoot \n",
+                               "\\endlastfoot \n",sep=""))
 table <- xtable(data, caption = "Long Table Example")
   print.xtable(table, 
              tabular.environment = "longtable",
-             floating = FALSE,
-             table.placement = 'H', 
-             comment = FALSE, caption.placement = 'bottom'
+             floating = FALSE, # Leave this as is.
+             table.placement = 'H', # Leave this as is.
+             booktabs = T, # Aesthetics
+             include.rownames = FALSE,  # Typically you don't want this in a table.
+             add.to.row = addtorow, # For adding the Continued on next page part...
+             comment = FALSE, 
+             caption.placement = 'bottom',  # Where do you want the caption?
+             size="\\fontsize{10pt}{11pt}\\selectfont"  # Size of text in table..
              )
 # See https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf for table inspiration
 ```
@@ -261,6 +276,55 @@ table <- xtable(data, caption = "Long Table Example")
 \hfill
 
 <!-- hfill can be used to create a space, like here between text and table. -->
+
+
+## Huxtable
+
+Huxtable is a very nice package for making working with tables between Rmarkdown and Tex easier.
+
+This cost some adjustment to the Tex templates to make it work, but it now works nicely.
+
+See documentation for this package [here](https://hughjonesd.github.io/huxtable/huxtable.html). A particularly nice addition of this package is for making the printing of regression results a joy (see [here](https://hughjonesd.github.io/huxtable/huxtable.html#creating-a-regression-table)). Here follows an example:
+
+
+```{r, results = 'asis'}
+
+library(huxtable)
+
+data(diamonds, package = 'ggplot2')
+
+Title <- "Regression Output"
+Label <- "Reg01"
+    
+lm1 <- lm(price ~ carat, diamonds)
+lm2 <- lm(price ~ depth, diamonds)
+lm3 <- lm(price ~ carat + depth, diamonds)
+lm4 <- lm(price ~ carat*depth, diamonds)
+
+htab <- 
+huxreg(lm1, lm2, lm3, lm4, 
+                statistics = c(N = "nobs", R2 = "r.squared"), 
+                note = "%stars%.") %>% 
+  set_caption(Title) %>% 
+  set_label(Label) %>% 
+  set_width(.6)
+
+# More settings:
+font_size(htab) <- 10
+
+# Let's change regression names: this is slightly hacky, but works. Comment out this section to see what the default looks like:
+  Names <- c("Reg1", "Reg2", "Reg3", "Reg4")
+  for(i in 1:ncol(htab)) {
+    htab[1,][[1+i]] <- Names[i]  
+  }
+  
+# Now simply call the table:
+  
+htab
+
+```
+
+From Table \ref{Reg01} above, we see how to make reporting regressions easy. Making nice tables, though, takes some practice and there are various other packages you can explore as well.
 
 # Lists
 
@@ -274,7 +338,7 @@ To add lists, simply using the following notation
 
 # Conclusion
 
-I hope you find this template useful. Remember, stackoverflow is your friend - use it to find answers to questions. Feel free to write me a mail if you have any questions regarding the use of this package feel free to email me. To cite this package, simply type citation("Texevier") in Rstudio to get the citation for @Texevier (Note that uncited references in your bibtex file will not be included in References).
+I hope you find this template useful. Remember, stackoverflow is your friend - use it to find answers to questions. Feel free to write me a mail if you have any questions regarding the use of this package. To cite this package, simply type citation("Texevier") in Rstudio to get the citation for @Texevier (Note that uncited references in your bibtex file will not be included in References).
 
 <!-- Make title of bibliography here: -->
 <!-- \newpage -->

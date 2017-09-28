@@ -29,4 +29,3 @@ Feel free to edit any of the settings in the template_name.tex file to conform t
 \examples{
 create_template(directory = "C:/Temp", template_name = "Project", launch_template = TRUE)
 }
-

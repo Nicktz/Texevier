@@ -13,8 +13,9 @@ Imports:
     rmarkdown,
     knitr,
     xtable,
+    huxtable,
     ggthemes,
-	readr
+  	readr
 Suggests:
 	xts
 Description: This package provides users with a quick means of setting up
@@ -24,4 +25,4 @@ Description: This package provides users with a quick means of setting up
 License: GPL-3
 LazyData: TRUE
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
