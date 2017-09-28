@@ -64,7 +64,7 @@ $endif$
 \bibliographystyle{natbib}
 \def\bibsection{\section*{References}} %%% Make "References" appear before bibliography
 \usepackage{longtable}
-\usepackage[margin=2cm,bottom=4cm,top=2.5cm, includefoot]{geometry}
+\usepackage[margin=$margin$cm,bottom=$bottom$cm,top=$top$cm, includefoot]{geometry}
 \usepackage{fancyhdr}
 \usepackage[bottom, hang, flushmargin]{footmisc}
 \usepackage{graphicx}

@@ -33,14 +33,20 @@ JELCodes: "L250 \\sep L100"
 BottomRFooter: "\\footnotesize Page \\thepage\\" # Add a '#' before this line to remove footer.
 addtoprule: TRUE
 addfootrule: TRUE               # Use if footers added. Add '#' to remove line.
+
+# Setting page margins:
+margin: 2 # Sides
+bottom: 2 # bottom
+top: 2.5 # Top
+
 HardSet: TRUE # Hard-set the spacing of words in your document. This will stop LaTeX squashong text to fit on pages, e.g. This is done by hard-setting the spacing dimensions. Set to FALSE if you want LaTeX to optimize this for your paper. 
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
 RemovePreprintSubmittedTo: TRUE  # Removes the 'preprint submitted to...' at bottom of titlepage
 Journal: "Journal of Finance"   # Journal that the paper will be submitting to, if RemovePreprintSubmittedTo is set to TRUE.
 toc: no                         # Add a table of contents
 numbersections: yes             # Should sections (and thus figures and tables) be numbered?
-fontsize: 12pt                  # Set fontsize
-linestretch: 1.5                # Set distance between lines.
+fontsize: 11pt                  # Set fontsize
+linestretch: 1.2                # Set distance between lines.
 link-citations: TRUE            # This creates dynamic links to the papers in reference list.
 output:
   pdf_document:
@@ -193,7 +199,7 @@ $$
 \int_{x = 1}^{\infty}x_{i} = 1
 $$
 
-Note again the reference to equation \ref{eq1}. Writing nice math requires practice. Note I used a forward slashes to make a space in the equations. I can also align equations using ``\&'', and set to numbering only the first line. Now I will have to type ``begin equation'' which is a native \LaTeX command. Here follows a more complicated equation:
+Note again the reference to equation \ref{eq1}. Writing nice math requires practice. Note I used a forward slashes to make a space in the equations. I can also align equations using  __\&__, and set to numbering only the first line. Now I will have to type ``begin equation'' which is a native \LaTeX command. Here follows a more complicated equation:
 
 
 \begin{align} 
