@@ -43,7 +43,7 @@ After installing all three at the top, simply run the following code:
     library(Texevier)
     # Input your directory as dir:
     dir <- "YOUR DIRECTORY HERE"
-    create_template(directory = dir, template_name = "Template", launch_template = TRUE, ShowPDFatLaunch = FALSE)
+    create_template(directory = dir, template_name = "Template", ShowPDFatLaunch = FALSE)
 
 ```
 

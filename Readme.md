@@ -31,9 +31,9 @@ After installing all three at the top, simply run the following code:
     library(Texevier)
     # Input your directory as dir:
     dir <- "YOUR DIRECTORY HERE"
-    create_template(directory = dir, template_name = "Template", launch_template = TRUE, ShowPDFatLaunch = TRUE)
+    create_template(directory = dir, template_name = "Template", ShowPDFatLaunch = TRUE)
 
-This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute. A pdf will pop up, if you keep ShowPDFatLaunch = TRUE, which you can scroll through to see what your template looks like. REMEMBER to close the pdf before attempting to edit the template. Conversely, set ShowPDFatLaunch = FALSE. By default your template R files will be launched. To only create the folder, set launch\_template = FALSE.
+This will automatically install all the needed files and components, and allow you to start working with an Elsevier template in less than a minute. A pdf will pop up, if you keep ShowPDFatLaunch = TRUE, which you can scroll through to see what your template looks like. REMEMBER to close the pdf before attempting to edit the template. Conversely, set ShowPDFatLaunch = FALSE. By default your template R files will be launched.
 
 A template.Rmd file will also be opened automatically from the directory provided, which contains all the needed notes on how to write an academic paper in R to produce the pdf example shown. I recommend going through the code in depth for a good reference before you start working. Also, start your paper journey by creating a R.proj within your working folder.
 
