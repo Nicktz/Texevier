@@ -4,8 +4,8 @@
 \alias{create_template}
 \title{create_template}
 \usage{
-create_template(directory, template_name, bib.location,
-  launch_template = TRUE, ShowPDFatLaunch = FALSE)
+create_template(directory = "C:/Onetimeonly", template_name, bib.location,
+  ShowPDFatLaunch = FALSE)
 }
 \arguments{
 \item{directory}{A character string with the target folder directory This folder will be created if it does not already exist.}
@@ -13,8 +13,6 @@ create_template(directory, template_name, bib.location,
 \item{template_name}{The folder, as well as the rmarkdown template, will be given this name.}
 
 \item{bib.location}{This can be a user specified location for a bib file. If omitted, the default bib file will be included. Note this command will create a renamed copy in the provided directory root.}
-
-\item{launch_template}{TRUE by default, this will launch the rmarkdown after creating the directory. The Working directory will also be changed.}
 
 \item{ShowPDFatLaunch}{FALSE by default, this will launch the default PDF.}
 }
@@ -29,5 +27,5 @@ Prior to submitting a paper, the user should zip the template_name.tex file, tog
 Feel free to edit any of the settings in the template_name.tex file to conform to particular preferences (e.g. setting margins, etc.)
 }
 \examples{
-\donttest{create_template(directory = "C:/Temp", template_name = "Project", launch_template = TRUE)}
+\donttest{create_template(directory = "C:/Temp", template_name = "Project")}
 }

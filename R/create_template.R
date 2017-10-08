@@ -10,14 +10,13 @@
 #' @param directory A character string with the target folder directory This folder will be created if it does not already exist.
 #' @param template_name The folder, as well as the rmarkdown template, will be given this name.
 #' @param bib.location This can be a user specified location for a bib file. If omitted, the default bib file will be included. Note this command will create a renamed copy in the provided directory root.
-#' @param launch_template TRUE by default, this will launch the rmarkdown after creating the directory. The Working directory will also be changed.
 #' @param ShowPDFatLaunch FALSE by default, this will launch the default PDF.
 #' @return If launch_template is TRUE, the template Rmarkdown file will be opened in a new R session. This can then be used as a starting point for an academic research paper.
 #' @examples
-#' \donttest{create_template(directory = "C:/Temp", template_name = "Project", launch_template = TRUE)}
+#' \donttest{create_template(directory = "C:/Temp", template_name = "Project")}
 #' @export
 
-create_template <- function (directory, template_name, bib.location, launch_template = TRUE, ShowPDFatLaunch = FALSE)
+create_template <- function (directory = "C:/Onetimeonly", template_name, bib.location, ShowPDFatLaunch = FALSE)
 {
   sink(tempfile())
   tex.file.root <- system.file("Tex", package = "Texevier")
@@ -97,21 +96,14 @@ create_template <- function (directory, template_name, bib.location, launch_temp
                                                                       list.files(directory, full.names = TRUE))], to = paste0(file.path(directory,
                                                                                                                                         template_name), ".Rmd"))
   }
-  if (launch_template) {
-    WD <- getwd()
-    on.exit(setwd(WD))
-    setwd(directory)
-    on.exit(setwd(directory))
     rmarkdown::render(paste0(file.path(directory, template_name),
                              ".Rmd"), output_format = "pdf_document", envir = new.env())
-    file.edit(paste0(file.path(directory, template_name),
-                     ".Rmd"))
 
     if(ShowPDFatLaunch){
       shell.exec(paste0(file.path(directory, template_name),
                         ".PDF"))
-      }
+    }
     sink()
-    cat("\n\n  ------------------ README: \n\n  Your Template has successfully built the template PDF. \n\n  Close the illustrated PDF after building it (If ShowPDFatLaunch = TRUE). A PDF Cannot be built on an open PDF. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n I suggest creating a .Rproj in your new directory before working further.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.\n      \n To customize the layout, change the code above between the first and second ``` in the template.")
+    cat("\n\n  ------------------ README: \n\n  Your Template has successfully built. \n\n  Go to the Folder just created (", print(file.path(directory, template_name)),"), and I strongly recommend then launching a .Rproj  and work within this folder. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.\n      \n To customize the layout, change the code above between the first and second ``` in the template.")
   }
-}
+
