@@ -102,7 +102,7 @@ library("ggplot2")
 library("ggthemes")
 
 
-if (!file.exists(file.path(getwd(), "Code/Example_Plot_Scatter.R"))) {
+if (!file.exists(file.path(getwd(), "code/Example_Plot_Scatter.R"))) {
   # This is just a random plot to show you a plot. This is done if the getwd() does not point to your Template's directory.
   # Set WD below to your project's working directory.
   
@@ -126,11 +126,11 @@ print(g)
 
   WD <- getwd()
 
-# Load Example Data using read_csv from Hadley Wickham (or other csv reading methods of your choice):
-ExampleData <- read_csv( file.path(WD, "Data/ExampleData.csv") )
+# Load ExampleData using read_rds or read_csv from readr package:
+ExampleData <- read_csv( file.path(WD, "data/ExampleData.csv") )
 
-source( file.path(WD, "Code/Example_Plot_Scatter.R") ) # Load a function from your 'Code' folder. This e.g. plots scatters to your own preferences.
-source( file.path(WD, "Code/Data_Create.R") ) # 
+source( file.path(WD, "code/Example_Plot_Scatter.R") ) # Load a function from your 'code' folder. This e.g. plots scatters to your own preferences.
+source( file.path(WD, "code/Data_Create.R") ) # 
 
 ExampleData <- Data_Create(N = 100) # Same as the ExampleData loaded above - this is just a function to create the stored data.
 

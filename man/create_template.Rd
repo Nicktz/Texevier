@@ -15,6 +15,8 @@ create_template(directory, template_name, bib.location,
 \item{bib.location}{This can be a user specified location for a bib file. If omitted, the default bib file will be included. Note this command will create a renamed copy in the provided directory root.}
 
 \item{launch_template}{TRUE by default, this will launch the rmarkdown after creating the directory. The Working directory will also be changed.}
+
+\item{ShowPDFatLaunch}{FALSE by default, this will launch the default PDF.}
 }
 \value{
 If launch_template is TRUE, the template Rmarkdown file will be opened in a new R session. This can then be used as a starting point for an academic research paper.
@@ -27,5 +29,5 @@ Prior to submitting a paper, the user should zip the template_name.tex file, tog
 Feel free to edit any of the settings in the template_name.tex file to conform to particular preferences (e.g. setting margins, etc.)
 }
 \examples{
-create_template(directory = "C:/Temp", template_name = "Project", launch_template = TRUE)
+\donttest{create_template(directory = "C:/Temp", template_name = "Project", launch_template = TRUE)}
 }

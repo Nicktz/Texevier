@@ -43,3 +43,5 @@ Motivation
 Doing research in R allows you to verify your work easily. This template is designed to save the researcher time in terms of setting up a proper template for doing formal research. This is something which could feel daunting and can be time-consuming for even intermediate LaTeX and R users. This package is intended to get you started in less than a minute.
 
 Feel free to edit the templates and use this as a starting point for your own research.
+
+Thanks to [Hanjo Odendaal](https://github.com/HanjoStudy) for adding some valuable code in the template creator as well.
