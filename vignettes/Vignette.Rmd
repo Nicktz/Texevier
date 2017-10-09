@@ -24,12 +24,12 @@ Make sure you have the following installed on your computer:
 
 Make sure you have the following installed on your computer:
 
-* [R](http://cran.r-project.org/bin/windows/base/)
-* [Rstudio](http://www.rstudio.com/)
+* [R](https://cran.r-project.org/bin/windows/base/)
+* [Rstudio](https://www.rstudio.com/)
 
 ## Optional (Should be installed automatically)
 
-* [MikTex](http://miktex.org/download)
+* [MikTex](https://miktex.org/download)
 
 ## Code
 

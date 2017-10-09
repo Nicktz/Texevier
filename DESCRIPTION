@@ -18,10 +18,10 @@ Imports:
   	devtools
 Suggests:
   	xts
-Description: This package provides users with a quick means of setting up
-    the standard accepted academic paper layout in the Elsevier format. Users will have to have
-    Latex installed first, as well as the latest rmarkdown version and Rstudio. This package
-	creates an easily useable template for doing formal write-ups in the Elsevier format.
+Description: Provides users with a quick means of setting up
+    the standard accepted academic paper layout in the 'Elsevier' format. Users will have to have
+    'Latex' installed first, as well as 'rmarkdown' and 'Rstudio'. This package
+	creates an easily usable template for doing formal write-ups in the 'Elsevier' format.
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 6.0.1
