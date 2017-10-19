@@ -7,29 +7,29 @@
 #' @import devtools
 #' @import rmarkdown
 #' @import utils
-#' @param directory A character string with the target folder directory This folder will be created if it does not already exist.
+#' @param directory A character string with the target folder directory.
+#' This folder will be created if it does not already exist, and you will be prompted if the folder already exists. In this case, it will create a subfolder within the existing folder. By default, it will save to a temporary directory.
 #' @param template_name The folder, as well as the rmarkdown template, will be given this name.
 #' @param bib.location This can be a user specified location for a bib file. If omitted, the default bib file will be included. Note this command will create a renamed copy in the provided directory root.
 #' @param ShowPDFatLaunch FALSE by default, this will launch the default PDF.
 #' @return If launch_template is TRUE, the template Rmarkdown file will be opened in a new R session. This can then be used as a starting point for an academic research paper.
 #' @examples
-#' \donttest{create_template(directory = "C:/Temp", template_name = "Project")}
+#' create_template(directory = tempdir(), template_name = "Project")
 #' @export
 
-create_template <- function (directory = "C:/Onetimeonly", template_name, bib.location, ShowPDFatLaunch = FALSE)
+create_template <- function (directory = tempdir(), template_name, bib.location, ShowPDFatLaunch = FALSE)
 {
   sink(tempfile())
   tex.file.root <- system.file("Tex", package = "Texevier")
   rmd.file.root <- system.file("Template", package = "Texevier")
   data.file.root <- system.file("extdata", package = "Texevier")
   code.file.root <- system.file("code", package = "Texevier")
-  if (missing(directory) | is.na(directory) == T) {
-    directory <- "C:/Template"
-  }
+
   if (missing(template_name)) {
     template_name <- "Template"
   }
   sink()
+
   if (file.exists(directory)) {
     answer <- readline(cat("--------------- \n PROMPT: \n \n Path: ",
                            file.path(directory), " provided already exists. \n Proceed to create template in this folder? Type: Y or N....\n"))
@@ -38,17 +38,20 @@ create_template <- function (directory = "C:/Onetimeonly", template_name, bib.lo
                              file.path(directory), " OR type N to quit \n"))
     }
     if (answer %in% c("Y", "y")) {
-      cat("Creating folder and executing Tex Platform creation")
+      cat(paste0("Creating research folder in: ", directory))
       sink(tempfile())
       Sys.sleep(1)
+
+      if(dir.exists(file.path(directory, "template")) ) {stop(paste0("The folder: \n\n", file.path(directory, "template"), "\n\nalready exists. Please provide a different directory or template_name.") )
+        } else {
       dir.create( file.path(directory, "template"), showWarnings = FALSE)
       directory <- file.path(directory, "template")
+        }
     }
     else {
-      return(cat("!Template not created!"))
+      return(cat("\n\nTemplate not created\n\n"))
     }
-  }
-  else {
+  } else {
     sink(tempfile())
     mkdirs <- function(fp) {
       if (!file.exists(fp)) {
@@ -104,6 +107,6 @@ create_template <- function (directory = "C:/Onetimeonly", template_name, bib.lo
                         ".PDF"))
     }
     sink()
-    cat("\n\n  ------------------ README: \n\n  Your Template has successfully built. \n\n  Go to the Folder just created (", print(file.path(directory, template_name)),"), and I strongly recommend then launching a .Rproj  and work within this folder. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.\n      \n To customize the layout, change the code above between the first and second ``` in the template.")
+    cat("\n\n=============================\n\n  TEMPLATE BUILD SUCCESSFUL. \n\n=============================\n\n  VIEW FOLDER AT: ", print(file.path(directory)), "\n\n=====================\n\n I strongly recommend launching a .Rproj  and work within this folder using the folder structure. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.")
   }
 
