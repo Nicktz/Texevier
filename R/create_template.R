@@ -19,7 +19,6 @@
 
 create_template <- function (directory = tempdir(), template_name, bib.location, ShowPDFatLaunch = FALSE)
 {
-  sink(tempfile())
   tex.file.root <- system.file("Tex", package = "Texevier")
   rmd.file.root <- system.file("Template", package = "Texevier")
   data.file.root <- system.file("extdata", package = "Texevier")
@@ -28,7 +27,6 @@ create_template <- function (directory = tempdir(), template_name, bib.location,
   if (missing(template_name)) {
     template_name <- "Template"
   }
-  sink()
 
   if (file.exists(directory)) {
     answer <- readline(cat("--------------- \n PROMPT: \n \n Path: ",
@@ -39,7 +37,6 @@ create_template <- function (directory = tempdir(), template_name, bib.location,
     }
     if (answer %in% c("Y", "y")) {
       cat(paste0("Creating research folder in: ", directory))
-      sink(tempfile())
       Sys.sleep(1)
 
       if(dir.exists(file.path(directory, "template")) ) {stop(paste0("The folder: \n\n", file.path(directory, "template"), "\n\nalready exists. Please provide a different directory or template_name.") )
@@ -52,20 +49,18 @@ create_template <- function (directory = tempdir(), template_name, bib.location,
       return(cat("\n\nTemplate not created\n\n"))
     }
   } else {
-    sink(tempfile())
     mkdirs <- function(fp) {
       if (!file.exists(fp)) {
         mkdirs(dirname(fp))
         dir.create(fp)
       }
     }
-    ifelse(!dir.exists(directory), mkdirs(directory), FALSE)
+    if(!dir.exists(directory) ) mkdirs(directory)
   }
   dir.create(file.path(directory, "Tex"), showWarnings = FALSE)
   dir.create(file.path(directory, "code"), showWarnings = FALSE)
   dir.create(file.path(directory, "data"), showWarnings = FALSE)
   if (!missing(bib.location) && !file.exists(bib.location)) {
-    sink()
     stop(cat(paste0("\n bib file: \n", bib.location, " \n does not exist. Leave this parameter blank to create default .bibfile, or check bib.location provided.")))
   }
   if (missing(bib.location)) {
@@ -106,7 +101,6 @@ create_template <- function (directory = tempdir(), template_name, bib.location,
       shell.exec(paste0(file.path(directory, template_name),
                         ".PDF"))
     }
-    sink()
     cat("\n\n=============================\n\n  TEMPLATE BUILD SUCCESSFUL. \n\n=============================\n\n  VIEW FOLDER AT: ", print(file.path(directory)), "\n\n=====================\n\n I strongly recommend launching a .Rproj  and work within this folder using the folder structure. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.")
   }
 

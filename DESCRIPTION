@@ -5,6 +5,7 @@ Version: 0.1.0
 Authors@R: person("Nico", "Katzke", email = "nfkatzke@gmail.com", role = c("aut", "cre"))
 Maintainer: Nico Katzke <nfkatzke@gmail.com>
 Depends:
+BugReports: https://github.com/nicktz/Texevier/issues
     R (>= 3.2.1)
 Imports:
 	tidyverse,
