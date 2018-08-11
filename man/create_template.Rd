@@ -4,8 +4,8 @@
 \alias{create_template}
 \title{create_template}
 \usage{
-create_template(directory = tempdir(), template_name, bib.location,
-  ShowPDFatLaunch = FALSE)
+create_template(directory = tempdir(), DoNotBuild = FALSE, template_name,
+  bib.location, ShowPDFatLaunch = FALSE)
 }
 \arguments{
 \item{directory}{A character string with the target folder directory.
@@ -28,5 +28,6 @@ Prior to submitting a paper, the user should zip the template_name.tex file, tog
 Feel free to edit any of the settings in the template_name.tex file to conform to particular preferences (e.g. setting margins, etc.)
 }
 \examples{
-create_template(directory = tempdir(), template_name = "Project")
+DoNotBuild = TRUE # Set to false to create folders structure example in your chosen directory.
+create_template(directory = tempdir(), DoNotBuild = DoNotBuild, template_name = "Project")
 }

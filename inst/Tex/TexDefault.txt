@@ -60,9 +60,16 @@ $endif$
 
 \usepackage{amssymb, amsmath, amsthm, amsfonts}
 
-\usepackage[round]{natbib}
-\bibliographystyle{natbib}
 \def\bibsection{\section*{References}} %%% Make "References" appear before bibliography
+
+$if(linenumbers)$
+\usepackage{lineno}
+\linenumbers
+$endif$
+
+\usepackage[round]{natbib}
+\bibliographystyle{plainnat}
+
 \usepackage{longtable}
 \usepackage[margin=$margin$cm,bottom=$bottom$cm,top=$top$cm, includefoot]{geometry}
 \usepackage{fancyhdr}
@@ -156,7 +163,7 @@ $if(header-includes)$
 $header-includes$
 $endif$
 
-$if(HardSet)$
+$if(HardSet_layout)$
 %%% Hard setting column skips for reports - this ensures greater consistency and control over the length settings in the document.
 %% page layout
 %% paragraphs
@@ -190,6 +197,12 @@ $endif$
 \begin{frontmatter}  %
 
 \title{$title$}
+
+% Set to FALSE if wanting to remove title (for submission)
+$if(AddTitle)$
+
+
+
 
 $if(Author1)$
 \author[Add1]{$Author1$}
@@ -279,6 +292,7 @@ $endif$
 $if(CorrespAuthor_5)$
 \cortext[cor]{Corresponding author: $Author5$}
 $endif$
+$endif$
 
 $if(abstract)$
 \begin{abstract}
@@ -338,9 +352,9 @@ $endif$
 $body$
 
 % Force include bibliography in my chosen format:
-\newpage
-\nocite{*}
-\bibliography{}
+
+\bibliographystyle{Tex/Texevier}
+\bibliography{Tex/ref}
 
 
 $for(include-after)$

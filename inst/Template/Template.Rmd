@@ -39,7 +39,10 @@ margin: 2.3 # Sides
 bottom: 2 # bottom
 top: 2.5 # Top
 
-HardSet: TRUE # Hard-set the spacing of words in your document. This will stop LaTeX squashong text to fit on pages, e.g. This is done by hard-setting the spacing dimensions. Set to FALSE if you want LaTeX to optimize this for your paper. 
+linenumbers: FALSE # Used when submitting to journal
+AddTitle: FALSE # Used when submitting to peer reviewed platform. This will remove author names. 
+
+HardSet_layout: TRUE # Hard-set the spacing of words in your document. This will stop LaTeX squashing text to fit on pages, e.g. This is done by hard-setting the spacing dimensions. Set to FALSE if you want LaTeX to optimize this for your paper. 
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
 RemovePreprintSubmittedTo: TRUE  # Removes the 'preprint submitted to...' at bottom of titlepage
 Journal: "Journal of Finance"   # Journal that the paper will be submitting to, if RemovePreprintSubmittedTo is set to TRUE.
@@ -97,10 +100,8 @@ In your tempalte folder, you will find a Data and a Code folder. In order to kee
 
 ```{r Figure1, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{Figure1}", fig.ext = 'png', fig.height = 3, fig.width = 6}
 
-library("tidyverse")
-library("ggplot2")
-library("ggthemes")
-
+library(dplyr)
+library(ggplot2)
 
 if (!file.exists(file.path(getwd(), "code/Example_Plot_Scatter.R"))) {
   # This is just a random plot to show you a plot. This is done if the getwd() does not point to your Template's directory.
@@ -241,7 +242,7 @@ table <- xtable(data, caption = "Short Table Example \\label{tab1}")
              table.placement = 'H', 
              # scalebox = 0.3, 
              comment = FALSE,
-             caption.placement = 'bottom',
+             caption.placement = 'bottom'
              )
 
 ```
@@ -350,4 +351,5 @@ I hope you find this template useful. Remember, stackoverflow is your friend - u
 
 <!-- Make title of bibliography here: -->
 <!-- \newpage -->
-# References  
+
+# References

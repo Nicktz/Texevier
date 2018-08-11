@@ -29,7 +29,21 @@ Make sure you have the following installed on your computer:
 
 ## Optional (Should be installed automatically)
 
+For the full version, install:
+
 * [MikTex](https://miktex.org/download)
+
+Alternatively (preferably) install tinytex:
+
+* [tinytex](https://yihui.name/tinytex/)
+
+```{r eval = FALSE}
+install.packages(c('tinytex', 'rmarkdown'))
+tinytex::install_tinytex()
+```
+
+This is a lightweight wrapper for tex, and should save you time and data.
+
 
 ## Code
 

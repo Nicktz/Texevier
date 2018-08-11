@@ -4,9 +4,7 @@
 #' In the directory folder provided, the user will have the tex files, as well as all relevant figure folders created in R. These should not be renamed or moved.
 #' Prior to submitting a paper, the user should zip the template_name.tex file, together with the figure files and Tex folder, and send it through to journal editors.
 #' Feel free to edit any of the settings in the template_name.tex file to conform to particular preferences (e.g. setting margins, etc.)
-#' @import devtools
-#' @import rmarkdown
-#' @import utils
+#' @importFrom rmarkdown render
 #' @param directory A character string with the target folder directory.
 #' This folder will be created if it does not already exist, and you will be prompted if the folder already exists. In this case, it will create a subfolder within the existing folder. By default, it will save to a temporary directory.
 #' @param template_name The folder, as well as the rmarkdown template, will be given this name.
@@ -14,11 +12,16 @@
 #' @param ShowPDFatLaunch FALSE by default, this will launch the default PDF.
 #' @return If launch_template is TRUE, the template Rmarkdown file will be opened in a new R session. This can then be used as a starting point for an academic research paper.
 #' @examples
-#' create_template(directory = tempdir(), template_name = "Project")
+#' DoNotBuild = TRUE # Set to false to create folders structure example in your chosen directory.
+#' create_template(directory = tempdir(), DoNotBuild = DoNotBuild, template_name = "Project")
 #' @export
 
-create_template <- function (directory = tempdir(), template_name, bib.location, ShowPDFatLaunch = FALSE)
+create_template <- function (directory = tempdir(), DoNotBuild = FALSE, template_name, bib.location, ShowPDFatLaunch = FALSE)
 {
+  if(DoNotBuild){
+message(paste0("\nTexevier Message: ========\n You selected not to build the folder on your computer.\n\n * Set DoNotBuild = FALSE to build the example folder in your selected directory, or\n * Visit the recommended folder structure, and copy the files to your preferred location, by typing: \nsystem.file(package = 'Texevier')\n\nIf you set DoNotBuild to TRUE, an example folder will be built in: ", directory, " under your current settings\n\nChange this location by setting directory = <YOURCHOSENDIRECTORY>"))
+  } else {
+
   tex.file.root <- system.file("Tex", package = "Texevier")
   rmd.file.root <- system.file("Template", package = "Texevier")
   data.file.root <- system.file("extdata", package = "Texevier")
@@ -104,3 +107,4 @@ create_template <- function (directory = tempdir(), template_name, bib.location,
     cat("\n\n=============================\n\n  TEMPLATE BUILD SUCCESSFUL. \n\n=============================\n\n  VIEW FOLDER AT: ", print(file.path(directory)), "\n\n=====================\n\n I strongly recommend launching a .Rproj  and work within this folder using the folder structure. \n\n  ------------------\n      \n Proceed to edit your template, and Press Cntrl + Shift + K to knit this into a pdf. A viewer will then appear showing the new pdf just built.\n      \n Visit http://rmarkdown.rstudio.com/ for tips on writing in R.")
   }
 
+}

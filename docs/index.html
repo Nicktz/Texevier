@@ -12,7 +12,8 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Template for Formal Research Papers with the 'Elsevier' 'Latex' Format">
 <meta property="og:description" content="Provides users with a quick means of setting up a folder that produces 
      an academic paper having the 'Elsevier' format. Users will have to have
-     'Latex' installed first, as well as 'rmarkdown' and 'Rstudio'. ">
+     'Latex' installed first, as well as 'rmarkdown' and 'Rstudio'. I recommend 
+     installing Yihui Xie's tinytex first.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -89,14 +90,12 @@
 <ul>
 <li><a href="http://cran.r-project.org/bin/windows/base/">R</a></li>
 <li><a href="http://www.rstudio.com/">Rstudio</a></li>
+<li>
+<a href="https://yihui.name/tinytex/">tinytex</a> by running:</li>
 </ul>
-</div>
-<div id="optional-should-be-installed-automatically" class="section level2">
-<h2 class="hasAnchor">
-<a href="#optional-should-be-installed-automatically" class="anchor"></a>Optional (Should be installed automatically)</h2>
-<ul>
-<li><a href="http://miktex.org/download">MikTex</a></li>
-</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">'tinytex'</span>, <span class="st">'rmarkdown'</span>))
+tinytex<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tinytex/topics/install_tinytex">install_tinytex</a></span>()</code></pre></div>
+<p>Alternatively, you could install the full <a href="http://miktex.org/download">MikTex</a> version.</p>
 </div>
 <div id="code" class="section level2">
 <h2 class="hasAnchor">
@@ -117,7 +116,6 @@ create_template(directory = dir, template_name = "Template", ShowPDFatLaunch = T
 <a href="#motivation" class="anchor"></a>Motivation</h2>
 <p>Doing research in R allows you to verify your work easily. This template is designed to save the researcher time in terms of setting up a proper template for doing formal research. This is something which could feel daunting and can be time-consuming for even intermediate LaTeX and R users. This package is intended to get you started in less than a minute.</p>
 <p>Feel free to edit the templates and use this as a starting point for your own research.</p>
-<p>Thanks to <a href="https://github.com/HanjoStudy">Hanjo Odendaal</a> for adding some valuable code in the template creator as well.</p>
 </div>
 </div>
   </div>
@@ -126,8 +124,7 @@ create_template(directory = dir, template_name = "Template", ShowPDFatLaunch = T
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="https://github.com/nicktz/Texevier/issues%0D%0A%20%20%20%20R%20(&gt;=%203.2.1)">https://​github.com/​nicktz/​Texevier/​issues
-    R (&gt;= 3.2.1)</a>
+<li>Report a bug at <br><a href="https://github.com/nicktz/Texevier/issues">https://​github.com/​nicktz/​Texevier/​issues</a>
 </li>
 </ul>
 </div>
