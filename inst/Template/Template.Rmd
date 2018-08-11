@@ -40,7 +40,7 @@ bottom: 2 # bottom
 top: 2.5 # Top
 
 linenumbers: FALSE # Used when submitting to journal
-AddTitle: FALSE # Used when submitting to peer reviewed platform. This will remove author names. 
+AddTitle: TRUE # Used when submitting to peer reviewed platform. This will remove author names. 
 
 HardSet_layout: TRUE # Hard-set the spacing of words in your document. This will stop LaTeX squashing text to fit on pages, e.g. This is done by hard-setting the spacing dimensions. Set to FALSE if you want LaTeX to optimize this for your paper. 
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
