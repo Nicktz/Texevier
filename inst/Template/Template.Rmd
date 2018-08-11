@@ -101,6 +101,7 @@ In your tempalte folder, you will find a Data and a Code folder. In order to kee
 ```{r Figure1, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{Figure1}", fig.ext = 'png', fig.height = 3, fig.width = 6}
 
 library(dplyr)
+library(readr)
 library(ggplot2)
 
 if (!file.exists(file.path(getwd(), "code/Example_Plot_Scatter.R"))) {

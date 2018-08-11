@@ -9,6 +9,7 @@ Depends:
 BugReports: https://github.com/nicktz/Texevier/issues
 Imports:
     dplyr,
+    readr,
     ggplot2,
     rmarkdown,
     knitr,
