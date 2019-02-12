@@ -30,7 +30,7 @@ Alternatively, you could install the full [MikTex](http://miktex.org/download) v
 
 ## Code
 
-After installing all three at the top, simply run the following code:
+After installing all three at the top, simply run the following code __(NOTE - if you experience issue when installing, set ShowPDFatLaunch to FALSE and investigate the Rmd file directly.)__:
 
     if (!require("devtools")) install.packages("devtools")
     library(devtools)
