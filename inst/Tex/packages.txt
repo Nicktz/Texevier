@@ -1,2 +1,2 @@
 % Insert custom packages here as follows
-% \usepackage{tikz}
+% \usepackage{colortbl}

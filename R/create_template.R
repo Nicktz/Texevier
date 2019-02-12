@@ -97,6 +97,7 @@ message(paste0("\nTexevier Message: ========\n You selected not to build the fol
                                                                       list.files(directory, full.names = TRUE))], to = paste0(file.path(directory,
                                                                                                                                         template_name), ".Rmd"))
   }
+
     rmarkdown::render(paste0(file.path(directory, template_name),
                              ".Rmd"), output_format = "pdf_document", envir = new.env())
 
