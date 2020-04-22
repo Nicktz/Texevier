@@ -21,7 +21,7 @@ Suggests:
 Description: Provides users with a quick means of setting up a folder that produces 
      an academic paper having the 'Elsevier' format. Users will have to have
      'Latex' installed first, as well as 'rmarkdown' and 'Rstudio'. I recommend 
-     installing Yihui Xie's tinytex first.
+     installing 'tinytex' first.
 License: GPL-3
 SystemRequirements: LaTeX
 LazyData: TRUE

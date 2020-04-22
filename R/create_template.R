@@ -86,7 +86,7 @@ create_template <- function (directory = tempdir(), template_name, bib.file, bui
   template_name <- gsub(".Rmd", "", template_name)
   cat( readLines(system.file("templates/write_up_template.txt", package = "Texevier")), file = paste0(file.path(directory, template_name), "/", template_name, ".Rmd"), sep="\n")
 
-  cat("\n\n=====================\n\n  TEMPLATE FOLDER BUILD SUCCESSFUL at ", file.path(directory), "\n\n=====================\n\nProceed to edit your template located in ", paste0(file.path(directory, template_name), "/", template_name, ".Rmd"),"\nTest if you can knit the Rmd into a pdf by knitting the file (e.g. press Cntrl + Shift + K in Windows, find the knit button in Rstudio) into a pdf. A viewer will then appear showing the new pdf just built.\n      \nVisit http://rmarkdown.rstudio.com/ for tips on writing in R.")
+  cat("\n\n=====================\n\n  TEMPLATE FOLDER BUILD SUCCESSFUL at ", file.path(directory), "\n\n=====================\n\nProceed to edit your template located in ", paste0(file.path(directory, template_name), "/", template_name, ".Rmd"),"\nTest if you can knit the Rmd into a pdf by knitting the file (e.g. press Cntrl + Shift + K in Windows, find the knit button in Rstudio) into a pdf. A viewer will then appear showing the new pdf just built.\n      \nVisit https://rmarkdown.rstudio.com/ for tips on writing in R.")
 
   if(open_project) rstudioapi::openProject( paste0( file.path( directory, template_name), "/", template_name, ".Rproj"), newSession = TRUE)
 

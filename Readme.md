@@ -23,8 +23,8 @@ will encounter in your writing. Your template will look as follows:
 
 Make sure you have the following installed on your computer:
 
-  - [R](http://cran.r-project.org/bin/windows/base/)
-  - [Rstudio](http://www.rstudio.com/)
+  - [R](https://cran.r-project.org/bin/windows/base/)
+  - [Rstudio](https://www.rstudio.com/)
   - [tinytex](https://yihui.name/tinytex/) by running:
 
 <!-- end list -->
@@ -35,7 +35,7 @@ tinytex::install_tinytex()
 ```
 
 Alternatively, you could install the full
-[MikTex](http://miktex.org/download) version.
+[MikTex](https://miktex.org/download) version.
 
 ## Example
 
