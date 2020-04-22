@@ -2,3 +2,4 @@
 
 export(create_template)
 importFrom(rmarkdown,render)
+importFrom(rstudioapi,openProject)

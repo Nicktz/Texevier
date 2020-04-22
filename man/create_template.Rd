@@ -4,8 +4,8 @@
 \alias{create_template}
 \title{create_template}
 \usage{
-create_template(directory = tempdir(), DoNotBuild = FALSE, template_name,
-  bib.location, ShowPDFatLaunch = FALSE)
+create_template(directory = tempdir(), template_name, bib.file,
+  build_project = TRUE, open_project = TRUE)
 }
 \arguments{
 \item{directory}{A character string with the target folder directory.
@@ -13,21 +13,25 @@ This folder will be created if it does not already exist, and you will be prompt
 
 \item{template_name}{The folder, as well as the rmarkdown template, will be given this name.}
 
-\item{bib.location}{This can be a user specified location for a bib file. If omitted, the default bib file will be included. Note this command will create a renamed copy in the provided directory root.}
+\item{bib.file}{If left blank, the default bib file will be used. This can be a user specified bib file. Should be the full path for the file (e.g. C:/Example/Bibfile.bib)}
 
-\item{ShowPDFatLaunch}{FALSE by default, this will launch the default PDF.}
-}
-\value{
-If launch_template is TRUE, the template Rmarkdown file will be opened in a new R session. This can then be used as a starting point for an academic research paper.
+\item{build_project}{Create .Rproj file in your provided location.}
+
+\item{open_project}{Open project after running this function.}
 }
 \description{
 This function builds a template directory  with all the necessary files, as well as a rmarkdown script which is ready to edit.
 The result is an Elsevier ready document that conforms to most academic journal standards.
-In the directory folder provided, the user will have the tex files, as well as all relevant figure folders created in R. These should not be renamed or moved.
+In the directory folder provided, the user will have the tex files, as well as all relevant figure folders created in R upon knitting the rmarkdown file.
+I strongly recommend working in a .Rproj environment, and thus recommend setting build_project to TRUE (as default). Using open_project will open the new project in a new session.
+The Tex files should not be renamed or moved.
 Prior to submitting a paper, the user should zip the template_name.tex file, together with the figure files and Tex folder, and send it through to journal editors.
 Feel free to edit any of the settings in the template_name.tex file to conform to particular preferences (e.g. setting margins, etc.)
 }
 \examples{
-DoNotBuild = TRUE # Set to false to create folders structure example in your chosen directory.
-create_template(directory = tempdir(), DoNotBuild = DoNotBuild, template_name = "Project")
+\dontrun{
+create_template(directory = tempdir(), template_name = "Write_Up",
+build_project = TRUE, open_project = TRUE)
+}
+
 }

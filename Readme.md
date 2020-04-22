@@ -1,5 +1,11 @@
-Introduction
-============
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# Texevier
+
+<!-- badges: start -->
+
+<!-- badges: end -->
 
 This package helps a user set up an Elsevier template for writing
 academic journal reports in Rmarkdown. The setup requires very few lines
@@ -13,14 +19,15 @@ will encounter in your writing. Your template will look as follows:
 
 ![Screenshot](inst/ScreenShot/Example.PNG)
 
-Dependencies Required
----------------------
+## Installation
 
 Make sure you have the following installed on your computer:
 
--   [R](http://cran.r-project.org/bin/windows/base/)
--   [Rstudio](http://www.rstudio.com/)
--   [tinytex](https://yihui.name/tinytex/) by running:
+  - [R](http://cran.r-project.org/bin/windows/base/)
+  - [Rstudio](http://www.rstudio.com/)
+  - [tinytex](https://yihui.name/tinytex/) by running:
+
+<!-- end list -->
 
 ``` r
 install.packages(c('tinytex', 'rmarkdown'))
@@ -30,38 +37,30 @@ tinytex::install_tinytex()
 Alternatively, you could install the full
 [MikTex](http://miktex.org/download) version.
 
-Code
-----
+## Example
 
-After installing all three at the top, simply run the following code
-**(NOTE - if you experience issue when installing, set ShowPDFatLaunch
-to FALSE and investigate the Rmd file directly.)**:
+After installing all three at the top, simply run the following code:
 
     if (!require("devtools")) install.packages("devtools")
     library(devtools)
     devtools::install_github("Nicktz/Texevier")
     library(Texevier)
     # Input your directory as dir:
-    dir <- "YOUR DIRECTORY HERE"
-    create_template(directory = dir, template_name = "Template", ShowPDFatLaunch = TRUE)
+    dir <- "YOUR DIRECTORY HERE" # Ideally choose an empty folder.
+    template_name = "Write_Up"
+    create_template(directory = dir, template_name = template_name, build_project = TRUE, open_project = TRUE)
 
-This will automatically install all the needed files and components, and
-allow you to start working with an Elsevier template in less than a
-minute. A pdf will pop up, if you keep ShowPDFatLaunch = TRUE, which you
-can scroll through to see what your template looks like. REMEMBER to
-close the pdf before attempting to edit the template. Conversely, set
-ShowPDFatLaunch = FALSE. By default your template R files will be
-launched.
+This will automatically install all the needed files and components in
+the right places - allowing you to immediately focus on your paper. By
+setting and `open_project = TRUE r`, a new project file will be created
+in your chosen folder location, and opened with a new environment.
 
-A template.Rmd file will also be opened automatically from the directory
-provided, which contains all the needed notes on how to write an
-academic paper in R to produce the pdf example shown. I recommend going
-through the code in depth for a good reference before you start working.
-Also, start your paper journey by creating a R.proj within your working
-folder.
+\<template\_name.Rmd\> file will be created in the directory provided,
+which contains all the needed notes on how to write an academic paper in
+R. See if all your tex installations are working by opening this file,
+and hitting the knit button.
 
-Motivation
-----------
+## Motivation
 
 Doing research in R allows you to verify your work easily. This template
 is designed to save the researcher time in terms of setting up a proper

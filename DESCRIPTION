@@ -1,20 +1,23 @@
 Package: Texevier
 Type: Package
-Title: Template for Formal Research Papers with the 'Elsevier' 'Latex' Format
-Version: 0.1.0
+Title: Template Folder Designed for Formal Research Papers with the 'Elsevier' 'Latex' Format
+Version: 1.1.0
 Authors@R: person("Nico", "Katzke", email = "nfkatzke@gmail.com", role = c("aut", "cre"))
 Maintainer: Nico Katzke <nfkatzke@gmail.com>
 Depends:
     R (>= 3.4.0)
 BugReports: https://github.com/nicktz/Texevier/issues
 Imports:
+    rmarkdown,
+    knitr,
+    rstudioapi
+Suggests: 
+    xtable,
+    huxtable,
     dplyr,
     readr,
     ggplot2,
-    rmarkdown,
-    knitr,
-    xtable,
-    huxtable
+    testthat
 Description: Provides users with a quick means of setting up a folder that produces 
      an academic paper having the 'Elsevier' format. Users will have to have
      'Latex' installed first, as well as 'rmarkdown' and 'Rstudio'. I recommend 
@@ -22,7 +25,7 @@ Description: Provides users with a quick means of setting up a folder that produ
 License: GPL-3
 SystemRequirements: LaTeX
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Repository: CRAN
 NeedsCompilation: yes
 ByteCompile: yes
