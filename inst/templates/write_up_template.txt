@@ -163,7 +163,7 @@ To make your graphs look extra nice in latex world, you could use Tikz device. R
 
 ```{r Figure2, warning =  FALSE, fig.align = 'center', fig.cap = "Caption Here \\label{Figure2}", fig.height = 3, fig.width = 6, dev = 'png'}
 
-ExampleData <- read_rds( "data/Example_Data.rds")
+ExampleData <- read_rds( "data/Example_data.rds")
 
 source("code/Example_Plot_Scatter.R") # Load a function from your 'code' folder. This e.g. plots scatters to your own preferences.
 source( "code/Data_Create.R") #
