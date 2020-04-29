@@ -202,12 +202,12 @@ You can also very easily split a page using the format below:
 
 :::::: {.columns data-latex="[T]"}
 ::: {.column data-latex="{0.7\textwidth}"}
-```{r, echo=FALSE, fig.width=5, fig.height=4}
+```{r, echo=FALSE, fig.width=4, fig.height=4}
 par(mar = c(4, 4, .2, .1))
 plot(cars, pch = 19)
 ```
 :::
-::: {.column data-latex="{0.1\textwidth}"}
+::: {.column data-latex="{0.05\textwidth}"}
 \
 <!-- an empty Div (with a white space), serving as
 a column separator -->
