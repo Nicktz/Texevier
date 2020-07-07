@@ -1,6 +1,6 @@
 Package: Texevier
 Type: Package
-Title: Template Folder Designed for Formal Research Papers with the 'Elsevier' 'Latex' Format
+Title: Formal Research Template with the 'Elsevier' 'Latex' Format
 Version: 1.1.0
 Authors@R: person("Nico", "Katzke", email = "nfkatzke@gmail.com", role = c("aut", "cre"))
 Maintainer: Nico Katzke <nfkatzke@gmail.com>
