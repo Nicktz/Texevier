@@ -64,7 +64,7 @@ linenumbers: FALSE # Used when submitting to journal
 # You can download cls format here: https://www.zotero.org/ - simply search for your institution. You can also edit and save cls formats here: https://editor.citationstyles.org/about/
 # Hit download, store it in Tex/ folder, and change reference below - easy.
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
-csl: Tex/harvard1.csl # referencing format used.
+csl: Tex/harvard-stellenbosch-university.csl # referencing format used.
 # By default, the bibliography only displays the cited references. If you want to change this, you can comment out one of the following:
 #nocite: '@*' # Add all items in bibliography, whether cited or not
 # nocite: |  # add specific references that aren't cited
@@ -366,8 +366,8 @@ huxreg(lm1, lm2, lm3,
 # More settings:
 font_size(htab) <- 12
 # Let's change regression names: this is slightly hacky, but works. Comment out this section to see what the default looks like:
-  Names <- c("Reg1", "Reg2", "Reg3")
-  for(i in 1:ncol(htab)) {
+  Names <- c( "Reg1", "Reg2", "Reg3")
+  for(i in 1:length(Names)) {
     htab[1,][[1+i]] <- Names[i]
   }
 # Now simply call the table:
@@ -399,9 +399,6 @@ I hope you find this template useful. Remember, stackoverflow is your friend - u
 # References {-}
 
 <div id="refs"></div>
-
-
-
 
 
 # Appendix {-}
