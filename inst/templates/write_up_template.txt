@@ -146,7 +146,7 @@ In your tempalte folder, you will find a Data and a Code folder. In order to kee
   # Set WD below to your project's working directory.
 
   g <-
-  ggplot(data = mtcars %>% tbl_df()) + # All data must be tbl_df()::: class(mtcars %>% tbl_df())
+  ggplot(data = mtcars) +
   geom_point(aes(x = disp, y = hp, color = cyl)) +
   theme_bw() +
   # theme(legend.position = "none") +
@@ -280,7 +280,7 @@ Tables can be included as follows. Use the _xtable_ (or kable) package for table
 ```{r ShortTable, results = 'asis'}
 
 library(xtable)
-data <- mtcars[1:5,] %>% tbl_df()
+data <- mtcars[1:5,] %>% tibble::as_tibble()
 
 table <- xtable(data, caption = "Short Table Example \\label{tab1}")
   print.xtable(table,
@@ -304,7 +304,7 @@ Use the following default settings to build your own possibly long tables. Note 
 
 library(xtable)
 
-data = mtcars %>% tbl_df()
+data = mtcars %>% tibble::as_tibble()
   addtorow          <- list()
   addtorow$pos      <- list()
   addtorow$pos[[1]] <- c(0)
