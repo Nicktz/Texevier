@@ -14,7 +14,7 @@ Thesis_FP: FALSE
 # Entry1: "An unbelievable study with a title spanning multiple lines."
 # Entry2: "\\textbf{Nico Katzke}" # textbf for bold
 # Entry3: "A thesis submitted toward the degree of Doctor of Philosophy"
-# Uni_Logo: Tex/Logo.png # Place a  png logo in an img folder in your root and uncomment this. Leave uncommented for no image
+# Uni_Logo: Tex/Logo.png # Place a logo in the indicated location (from your root, e.g. defaults to ~/Tex/Logo.png) and uncomment this line. Leave uncommented for no image
 # Logo_width: 0.3 # If using a logo - use this to set width (size) of image
 # Entry4: "Under the supervision of: \\vfill Prof. Joe Smith and Dr. Frank Smith"
 # Entry5: "Stellenbosch University"
@@ -197,34 +197,32 @@ Also note the information that I have placed above the chunks in the code chunks
 
 # Splitting a page
 
-You can also very easily split a page using the format below:
+You can also very easily split a page using built-in Pandoc formatting. I comment this out in the code (as this has caused issues building the pdf for some users - which I presume to be a Pandoc issue), but you are welcome to try it out yourself by commenting out the following section in your Rmd file.
 
 
-:::::: {.columns data-latex="[T]"}
-::: {.column data-latex="{0.7\textwidth}"}
-```{r, echo=FALSE, fig.width=4, fig.height=4}
-par(mar = c(4, 4, .2, .1))
-plot(cars, pch = 19)
-```
-:::
-::: {.column data-latex="{0.05\textwidth}"}
-\
-<!-- an empty Div (with a white space), serving as
-a column separator -->
-:::
-::: {.column data-latex="{0.2\textwidth}"}
-<!-- To make this text a bit smaller, use \scriptsize, \small, \footnotesize or \normal. There are other size too - google latex sizes. -->
-\scriptsize
+<!-- :::::: {.columns data-latex="[T]"} -->
+<!-- ::: {.column data-latex="{0.7\textwidth}"} -->
+<!-- ```{r, echo=FALSE, fig.width=4, fig.height=4} -->
+<!-- par(mar = c(4, 4, .2, .1)) -->
+<!-- plot(cars, pch = 19) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column data-latex="{0.05\textwidth}"} -->
+<!-- \ -->
+<!-- ::: -->
+<!-- ::: {.column data-latex="{0.2\textwidth}"} -->
+<!-- \scriptsize -->
 
-## Data {-}
-The figure on the left-hand side shows the `cars` data.
+<!-- ## Data {-} -->
+<!-- The figure on the left-hand side shows the `cars` data. -->
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-enim ad minim veniam, quis nostrud exercitation ullamco laboris
-nisi ut aliquip ex ea commodo consequat.
-:::
-::::::
+<!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do -->
+<!-- eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut -->
+<!-- enim ad minim veniam, quis nostrud exercitation ullamco laboris -->
+<!-- nisi ut aliquip ex ea commodo consequat. -->
+<!-- ::: -->
+<!-- :::::: -->
+
 
 
 #  Methodology \label{Meth}
