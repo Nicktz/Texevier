@@ -39,6 +39,7 @@ Email3: "Joe\\@gmail.com"
 
 CorrespAuthor_1: TRUE  # If corresponding author is author 3, e.g., use CorrespAuthor_3: TRUE
 
+# Comment out below to remove both. JEL Codes only given if keywords also given.
 keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Copula" # Use \\sep to separate
 JELCodes: "L250 \\sep L100"
 

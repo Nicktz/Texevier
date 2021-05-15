@@ -4,8 +4,13 @@
 \alias{create_template}
 \title{create_template}
 \usage{
-create_template(directory = tempdir(), template_name, bib.file,
-  build_project = TRUE, open_project = TRUE)
+create_template(
+  directory = tempdir(),
+  template_name,
+  bib.file,
+  build_project = TRUE,
+  open_project = TRUE
+)
 }
 \arguments{
 \item{directory}{A character string with the target folder directory.

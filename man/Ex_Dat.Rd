@@ -4,7 +4,9 @@
 \name{Ex_Dat}
 \alias{Ex_Dat}
 \title{Simple example file to illustrate where data should reside, and how to load it simply.}
-\format{A .rda data file.}
+\format{
+A .rda data file.
+}
 \usage{
 Ex_Dat
 }

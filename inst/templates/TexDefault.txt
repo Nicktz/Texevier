@@ -373,13 +373,25 @@ $endif$
 
 \vspace{1cm}
 
+
+$if(keywords)$
 \begin{keyword}
 \footnotesize{
-$keywords$ \\ \vspace{0.3cm}
+$keywords$ \\
+\vspace{0.3cm}
+}
+$if(JELCodes)$
+\footnotesize{
 \textit{JEL classification} $JELCodes$
 }
+$endif$
 \end{keyword}
+$endif$
+
+
+
 \vspace{0.5cm}
+
 \end{frontmatter}
 
 
