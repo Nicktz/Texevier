@@ -39,8 +39,6 @@ tinytex::install_tinytex()
 Alternatively, you could install the full [MikTex](https://miktex.org/download) version.
 
 
-
-
 ## Example
 
 After installing all three at the top, simply run the following code:
