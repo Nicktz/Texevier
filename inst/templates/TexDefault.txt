@@ -148,13 +148,8 @@ $endif$
 }
 \makeatother
 
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newenvironment{CSLReferences}%
-  {\setlength{\parindent}{0pt}%
-  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
-  {\par}
-
+\newenvironment{CSLReferences}[2]{%
+}
 
 \urlstyle{same}  % don't use monospace font for urls
 $if(links-as-notes)$
@@ -393,6 +388,8 @@ $endif$
 \vspace{0.5cm}
 
 \end{frontmatter}
+
+\setcounter{footnote}{0}
 
 
 $if(toc)$

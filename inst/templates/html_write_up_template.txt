@@ -36,6 +36,8 @@ pacman::p_load(modelsummary, gt, knitr, kableExtra, tidyverse)
 
 # Introduction {-}
 
+This template has been adapted from pagedown::html_paged and is intended to help you simply create HTML that has a readable (pdf) feel to it.
+
 References are to be made as follows: [@fama1997] and @grinold2000 Such authors could also be referenced in brackets [@grinold2000] and together [@fama1997 \& @grinold2000]. Source the reference code from scholar.google.com by clicking on ``cite'' below article name. Then select BibTeX at the bottom of the Cite window, and proceed to copy and paste this code into your ref.bib file, located in the directory's Tex folder. Open this file in Rstudio for ease of management, else open it in your preferred Tex environment. Add and manage your article details here for simplicity - once saved, it will self-adjust in your paper.
 
 > I suggest renaming the top line after \@article, as done in the template ref.bib file, to something more intuitive for you to remember. Do not change the rest of the code. Also, be mindful of the fact that bib references from google scholar may at times be incorrect. Reference Latex forums for correct bibtex notation.
@@ -96,7 +98,7 @@ $$
 \int_{x = 1}^{\infty}x_{i} = 1
 $$
 
-Note again the reference to equation \ref{eq1}. Writing nice math requires practice. Note I used a forward slashes to make a space in the equations. I can also align equations using  __\&__, and set to numbering only the first line. Now I will have to type ``begin equation'' which is a native \LaTeX command. Here follows a more complicated equation:
+Writing nice math requires practice. Note I used a forward slashes to make a space in the equations. I can also align equations using  __\&__, and set to numbering only the first line. Now I will have to type ``begin equation'' which is a native \LaTeX command. Here follows a more complicated equation:
 
 
 \begin{align}
@@ -108,9 +110,9 @@ Note again the reference to equation \ref{eq1}. Writing nice math requires pract
 		Q_{t, i, j} &= (1-\alpha-\beta)  \bar{Q} + \alpha  z_t  z_t'  + \beta  Q_{t, i, j} \notag
 \end{align}
 
-Note that in \ref{eq2} I have aligned the equations by the equal signs. I also want only one tag, and I create spaces using ``quads''.
+Note that above we've aligned the equations by the equal signs. I also want only one tag, and I create spaces using ``quads''.
 
-See if you can figure out how to do complex math using the two examples provided in \ref{eq1} and \ref{eq2}.
+See if you can figure out how to do complex math using the two examples provided.
 
 <!-- $$ -->
 <!-- This is a commented out section in the writing part. -->
@@ -146,7 +148,7 @@ To reference calculations __in text__, _do this:_ From table \@ref(tab:table-1) 
 \newpage
 
 
-## Model summary
+# Model summary
 
 
 Check [this](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html) link out for more. Note this package also plays nicely with gt, kableExtra, etc.
@@ -176,14 +178,6 @@ type="numeric",
             column_labels.vlines.width = 1, table.font.size = pct(60))
 
 Tab
-```
-
-
-
-```{r}
-
-datasummary_correlation(mtcars)
-
 ```
 
 

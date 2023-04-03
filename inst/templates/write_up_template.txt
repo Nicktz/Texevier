@@ -12,7 +12,7 @@ documentclass: "elsarticle"
 # You can move the details below around as you please.
 Thesis_FP: FALSE
 # Entry1: "An unbelievable study with a title spanning multiple lines."
-# Entry2: "\\textbf{Nico Katzke}" # textbf for bold
+# Entry2: "\\textbf{Some Guy}" # textbf for bold
 # Entry3: "A thesis submitted toward the degree of Doctor of Philosophy"
 # Uni_Logo: Tex/Logo.png # Place a logo in the indicated location (from your root, e.g. defaults to ~/Tex/Logo.png) and uncomment this line. Leave uncommented for no image
 # Logo_width: 0.3 # If using a logo - use this to set width (size) of image
@@ -25,8 +25,8 @@ Thesis_FP: FALSE
 # --------- Front Page
 # Comment: ----- Follow this pattern for up to 5 authors
 AddTitle: TRUE # Use FALSE when submitting to peer reviewed platform. This will remove author names.
-Author1: "Nico Katzke^[__Contributions:__  \\newline _The authors would like to thank no institution for money donated to this project. Thank you sincerely._]"  # First Author - note the thanks message displayed as an italic footnote of first page.
-Ref1: "Prescient Securities, Cape Town, South Africa" # First Author's Affiliation
+Author1: "Jane Doe^[__Contributions:__  \\newline _The authors would like to thank no institution for money donated to this project. Thank you sincerely._]"  # First Author - note the thanks message displayed as an italic footnote of first page.
+Ref1: "Some Institution, Cape Town, South Africa" # First Author's Affiliation
 Email1: "nfkatzke\\@gmail.com" # First Author's Email address
 
 Author2: "John Smith"
@@ -247,7 +247,7 @@ $$
 \int_{x = 1}^{\infty}x_{i} = 1
 $$
 
-Note again the reference to equation \ref{eq1}. Writing nice math requires practice. Note I used a forward slashes to make a space in the equations. I can also align equations using  __\&__, and set to numbering only the first line. Now I will have to type ``begin equation'' which is a native \LaTeX command. Here follows a more complicated equation:
+Note the equation above - this should appear in math in Rstudio. Writing nice math requires practice. Note I used a forward slashes to make a space in the equations. I can also align equations using  __\&__, and set to numbering only the first line. Now I will have to type ``begin equation'' which is a native \LaTeX command. Here follows a more complicated equation that you want aligned (using \& sign) and numbered:
 
 
 \begin{align}
