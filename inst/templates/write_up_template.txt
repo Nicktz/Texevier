@@ -271,6 +271,20 @@ See if you can figure out how to do complex math using the two examples provided
 <!-- \end{align} -->
 <!-- $$ -->
 
+
+# Including an external plot
+
+You can also include plots produced outside of your Rmarkdown file using the package *knitr*
+
+See below chunk:
+
+```{r, out.width = "205px", fig.cap=figures("Some Figure")), eval = F}
+
+knitr::include_graphics("YourFigureLocation/Logo.png")
+
+```
+
+
 # Results
 
 Tables can be included as follows. Use the _xtable_ (or kable) package for tables. Table placement = H implies Latex tries to place the table Here, and not on a new page (there are, however, very many ways to skin this cat. Luckily there are many forums online!).
