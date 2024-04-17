@@ -278,7 +278,7 @@ You can also include plots produced outside of your Rmarkdown file using the pac
 
 See below chunk:
 
-```{r, out.width = "205px", fig.cap=figures("Some Figure")), eval = F}
+```{r, out.width = "205px", fig.cap=figures("Some Figure"), eval = F}
 
 knitr::include_graphics("YourFigureLocation/Logo.png")
 
