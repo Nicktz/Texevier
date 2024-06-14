@@ -1,12 +1,13 @@
 Package: Texevier
 Type: Package
 Title: Formal Research Template with the 'Elsevier' 'Latex' Format
-Version: 1.1.5
+Version: 1.1.6
 Authors@R: person("Nico", "Katzke", email = "nfkatzke@gmail.com", role = c("aut", "cre"))
 Maintainer: Nico Katzke <nfkatzke@gmail.com>
 Depends:
     R (>= 3.4.0)
 BugReports: https://github.com/nicktz/Texevier/issues
+Encoding: UTF-8
 Imports:
     rmarkdown,
     knitr,
