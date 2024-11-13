@@ -1,7 +1,7 @@
 Package: Texevier
 Type: Package
 Title: Formal Research Template with the 'Elsevier' 'Latex' Format
-Version: 1.1.6
+Version: 1.1.7
 Authors@R: person("Nico", "Katzke", email = "nfkatzke@gmail.com", role = c("aut", "cre"))
 Maintainer: Nico Katzke <nfkatzke@gmail.com>
 Depends:
@@ -26,7 +26,7 @@ Description: Provides users with a quick means of setting up a folder that produ
 License: GPL-3
 SystemRequirements: LaTeX
 LazyData: TRUE
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Repository: CRAN
 NeedsCompilation: yes
 ByteCompile: yes

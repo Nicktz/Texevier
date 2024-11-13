@@ -152,7 +152,8 @@ $endif$
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
-\begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\href{\#cite.\detokenize{#1}}{#2}\nocite{#1}}
+
 \makeatletter
 % allow citations to break across lines
 \let\@cite@ofmt\@firstofone
