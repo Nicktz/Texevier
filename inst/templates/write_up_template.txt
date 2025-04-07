@@ -1,5 +1,5 @@
 ---
-# IMPORTANT: Change settings here, but DO NOT change the spacing.
+# IMPORTANT: Change settings here, but DO NOT change the spacing AT ALL.
 # Remove comments and add values where applicable.
 # The descriptions below should be self-explanatory
 
